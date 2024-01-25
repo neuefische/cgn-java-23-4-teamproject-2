@@ -8,9 +8,10 @@ type ViewBookProps = {
 }
 
 export default function ViewBook(props: ViewBookProps){
-const [book, setBooks] = useState<Book>();
+
+    const [book, setBooks] = useState<Book>();
     const {id} = useParams();
-   useEffect(() => {
+    useEffect(() => {
         axios.get(`/api/books/${id}`).then(response => setBooks(response.data))
 
     }, [])
@@ -26,9 +27,17 @@ const [book, setBooks] = useState<Book>();
             <div className="book">
                 <div>{book?.title}</div>
                 <div>{book?.author}</div>
+                <div>{book?.genre}</div>
+                <div>{book?.year}</div>
+                <div>{book?.publisher}</div>
+                <div>{book?.city}</div>
+                <div>{book?.page}</div>
+                <div>{book?.description}</div>
+                <div>{book?.views}</div>
+
                 <Link to={`/books/${book?.id}/edit`}>
                     <button>Edit</button>
-                    <button className="book-delete-button" onClick={() => handleBookDelete(book?.id)}> Delete</button>
+                    <button className="book-delete-button" onClick={() => handleBookDelete(book?.id)}>Delete</button>
                 </Link>
             </div>
         </div>

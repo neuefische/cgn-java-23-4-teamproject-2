@@ -1,6 +1,7 @@
 import {Book} from "./types/Book.ts";
 
 import {ChangeEvent, FormEvent, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
   type AddNewBookProps = {
     saveBook: (bookToSave: Book) => void
@@ -81,7 +82,20 @@ export default function AddNewBook(props : AddNewBookProps){
 
         props.saveBook(bookToSave)
 
+        setTitle("")
+        setAuthor("")
+        setGenre("")
+        setYears("")
+        setPublisher("")
+        setCity("")
+        setPage("")
+        setDescription("")
+        setViews("")
+
     }
+    const navigate = useNavigate()
+
+     const redirect = ()=>{ navigate("/")}
 
           return(
               <div>
@@ -98,9 +112,10 @@ export default function AddNewBook(props : AddNewBookProps){
                       <input value={description} onChange={onDescriptionChange} placeholder={"Description"}/>
                       <input value={views} onChange={onViewsChange} placeholder={"Views"}/>
                       <button type="submit">Save</button>
+                      <br/>
+                      <button type="button" onClick={redirect}>Home</button>
                   </form>
               </div>
           )
-
 
 }
