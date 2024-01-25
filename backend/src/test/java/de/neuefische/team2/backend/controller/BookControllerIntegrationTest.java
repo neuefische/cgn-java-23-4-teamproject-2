@@ -30,10 +30,12 @@ public class BookControllerIntegrationTest {
     @DirtiesContext
     @Test
     void getBooksTest_shouldReturnListWithOneObject_whenOneObjectWasSavedInRepository() throws Exception {
-        //GIVEN
-        booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling"));
+        // GIVEN
+        booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling",
+                "adventure",2000,"Bloomsbury",
+                "London",100,"very good book",0));
 
-        //WHEN
+        // WHEN
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/books"))
 
                 //THEN
@@ -42,7 +44,14 @@ public class BookControllerIntegrationTest {
                         [{
                              "id": "1",
                              "title": "Harry Potter und der Stein der Weisen",
-                             "author": "J.K. Rowling"
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
                          }]
                         """))
                 .andReturn();
@@ -53,7 +62,9 @@ public class BookControllerIntegrationTest {
     @Test
     void updateBooksTest_shouldReturnBookWithUpdatedAuthor_whenBookWithUpdatedAuthorSent() throws Exception {
         //GIVEN
-        booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling"));
+        booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling",
+                "adventure",2000,"Bloomsbury",
+                "London",100,"very good book",0));
 
         //WHEN
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/books/1")
@@ -61,20 +72,33 @@ public class BookControllerIntegrationTest {
                         .content("""
                                                                 
                                     {
-                                    "id":"1",
-                                    "title":"Harry Potter und der Stein der Weisen",
-                                    "author":"JayKay Rowling"
-                                    }
-                                     
+                              "id": "1",
+                             "title": "Harry Potter und der Stein der Weisen",
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
+                                    }                      
                                 """))
 
                 //THEN
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json("""
                         {
-                             "id": "1",
+                                                     "id": "1",
                              "title": "Harry Potter und der Stein der Weisen",
-                             "author": "JayKay Rowling"
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
                          }
                         """))
                 .andReturn();
@@ -85,7 +109,9 @@ public class BookControllerIntegrationTest {
     @Test
     void getBookByIdTest_shouldReturnObjectWithTheId() throws Exception {
         //GIVEN
-        Book book = booksRepo.save(new Book("1", "Title", "Author"));
+        Book book = booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling",
+                "adventure",2000,"Bloomsbury",
+                "London",100,"very good book",0));
         String id = book.id();
         //WHEN
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/books/{id}", id))
@@ -93,9 +119,16 @@ public class BookControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
-                        "id":"1",
-                        "title":"Title",
-                        "author":"Author"
+                                                    "id": "1",
+                             "title": "Harry Potter und der Stein der Weisen",
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
                         }
                         """))
                 .andReturn();
@@ -105,7 +138,9 @@ public class BookControllerIntegrationTest {
     @Test
     void getBookByNoExistingIdTest_shouldReturnNoObject() throws Exception {
         //GIVEN
-        Book book = booksRepo.save(new Book("1", "Title", "Author"));
+        Book book = booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling",
+                "adventure",2000,"Bloomsbury",
+                "London",100,"very good book",0));
         String nonExistingId = "nonExistingId";
         //WHEN
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/books/{id}", nonExistingId))
@@ -119,7 +154,9 @@ public class BookControllerIntegrationTest {
     @Test
     void deleteBook_shouldReturnBook_whenThisObjectWasDeletedFromRepository() throws Exception {
         //GIVEN
-        booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling"));
+        booksRepo.save(new Book("1", "Harry Potter und der Stein der Weisen", "J.K. Rowling",
+                "adventure",2000,"Bloomsbury",
+                "London",100,"very good book",0));
 
         //WHEN
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/books/1"))
@@ -128,9 +165,16 @@ public class BookControllerIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json("""
                                 {
-                                     "id": "1",
-                                     "title": "Harry Potter und der Stein der Weisen",
-                                     "author": "J.K. Rowling"
+                              "id": "1",
+                             "title": "Harry Potter und der Stein der Weisen",
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
                                  }
                                 """))
                 .andReturn();
@@ -147,8 +191,16 @@ public class BookControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                          {
-                           "title": "Harry Potter und der Stein der Weisen",
-                           "author": "J.K. Rowling"
+                                          
+                             "title": "Harry Potter und der Stein der Weisen",
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
                          }
                         """)
         )
@@ -157,8 +209,16 @@ public class BookControllerIntegrationTest {
                 .andExpect(content().json("""
 
                   {
-                     "title": "Harry Potter und der Stein der Weisen",
-                      "author": "J.K. Rowling"
+                                       
+                             "title": "Harry Potter und der Stein der Weisen",
+                             "author": "J.K. Rowling",
+                             "genre": "adventure",
+                             "year": 2000,
+                             "publisher": "Bloomsbury",
+                             "city": "London",
+                             "page": 100,
+                             "description": "very good book",
+                             "views": 0
                   }
                 """))
 

@@ -7,7 +7,7 @@ public record Book(
         String title,
         String author,
         String genre,
-        String year,
+        Integer year,
         String publisher,
         String city,
         Integer page,
