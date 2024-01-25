@@ -6,8 +6,10 @@ import ViewBook from "./components/view-book.tsx";
 import {Book} from "./types/Book.ts";
 import axios from "axios";
 import {Route, Routes, useNavigate} from "react-router-dom";
-
 import AddNewBook from "./AddNewBook.tsx";
+import NavBar from "./components/Navbar.tsx";
+import NoPage from "./components/NoPage.tsx";
+import Home from "./components/home.tsx";
 
 
 function App() {
@@ -45,12 +47,14 @@ function App() {
     }
 
     return (
-        <>
+        <><NavBar/>
             <Routes>
-                <Route path="/" element={<ViewAllBooks books={books}/>}/>
+                <Route index element={<Home/>}/>
+                <Route path="/list" element={<ViewAllBooks books={books}/>}/>
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
                 <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook}/>}/>
                 <Route path={"/books/add"} element={<AddNewBook saveBook={addBook}/>}/>
+                <Route path={"/*"} element={<NoPage/>}/>
             </Routes>
         </>
     )
