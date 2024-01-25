@@ -5,7 +5,7 @@ import {EditBook} from "./components/edit-book.tsx";
 import ViewBook from "./components/view-book.tsx";
 import {Book} from "./types/Book.ts";
 import axios from "axios";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import AddNewBook from "./AddNewBook.tsx";
 import NavBar from "./components/Navbar.tsx";
 import NoPage from "./components/NoPage.tsx";
@@ -20,9 +20,13 @@ function App() {
         axios.get("/api/books").then(response => setBooks(response.data))
     }, [])
 
+    const navigate = useNavigate()
+
     const addBook =(bookToSave : Book)=>{
-         setBooks([...books, bookToSave ])
-         axios.post("/api/books", bookToSave).then(response => console.log(response.data))
+         axios.post("/api/books", bookToSave)
+             .then((response)=>{
+                 setBooks([...books, response.data])
+                 navigate("/books/"+ response.data.id)})
     }
 
   const deleteBook = (id: string) => {
@@ -34,7 +38,11 @@ function App() {
   }
 
     const editBook = (book: Book): void => {
-        axios.put(`/api/books/${book.id}`, book).then(response => setBooks(books.map((item) => (item.id === book.id ? response.data : book)))
+        axios.put(`/api/books/${book.id}`, book)
+            .then(response =>{
+                setBooks(books.map((item) => (item.id === book.id ? response.data : book)))
+                navigate("/books/" + response.data.id)
+            }
         )
     }
 
