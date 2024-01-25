@@ -4,12 +4,12 @@ export type Book = {
     title: string;
     author: string;
     "genre": string,
-    "year": string,
+    "year": number,
     "publisher": string,
     "city": string,
-    "page": string,
+    "page": number,
     "description": string,
-    "views": string
+    "views": number
 
 
 }

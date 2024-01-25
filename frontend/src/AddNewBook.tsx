@@ -1,7 +1,7 @@
 import {Book} from "./types/Book.ts";
 
 import {ChangeEvent, FormEvent, useState} from "react";
-import {useNavigate} from "react-router-dom";
+
 
   type AddNewBookProps = {
     saveBook: (bookToSave: Book) => void
@@ -16,17 +16,18 @@ export default function AddNewBook(props : AddNewBookProps){
 
     const [genre, setGenre] = useState<string>("")
 
-    const [year, setYears] = useState<string>("")
+    const [year, setYears] = useState<number>(2024)
 
     const [publisher, setPublisher] = useState<string>("")
 
     const [city, setCity] = useState<string>("")
 
-    const [page, setPage] = useState<string>("")
+    const [page, setPage] = useState<number>(0)
 
     const [description, setDescription] = useState<string>("")
 
-    const [views, setViews] = useState<string>("")
+    const [views, setViews] = useState<number>(0)
+
 
 
     function onTitleChange(event:ChangeEvent<HTMLInputElement>) {
@@ -41,7 +42,7 @@ export default function AddNewBook(props : AddNewBookProps){
     }
 
     function onYearChange(event:ChangeEvent<HTMLInputElement>) {
-            setYears(event.target.value);
+            setYears(event.target.valueAsNumber);
     }
 
     function onPublisherChange(event: ChangeEvent<HTMLInputElement>) {
@@ -53,13 +54,13 @@ export default function AddNewBook(props : AddNewBookProps){
     }
 
     function onPageChange(event: ChangeEvent<HTMLInputElement>) {
-            setPage(event.target.value)
+            setPage(event.target.valueAsNumber)
     }
     function onDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
             setDescription(event.target.value)
     }
     function onViewsChange(event: ChangeEvent<HTMLInputElement>) {
-            setViews(event.target.value)
+            setViews(event.target.valueAsNumber)
     }
 
 
@@ -85,17 +86,15 @@ export default function AddNewBook(props : AddNewBookProps){
         setTitle("")
         setAuthor("")
         setGenre("")
-        setYears("")
+        setYears(2024)
         setPublisher("")
         setCity("")
-        setPage("")
+        setPage(0)
         setDescription("")
-        setViews("")
+        setViews(0)
 
     }
-    const navigate = useNavigate()
 
-     const redirect = ()=>{ navigate("/")}
 
           return(
               <div>
@@ -105,15 +104,13 @@ export default function AddNewBook(props : AddNewBookProps){
                       <input value={title} onChange={onTitleChange} placeholder="Title"/>
                       <input value={author} onChange={onAuthorChange} placeholder={"Author"}/>
                       <input value={genre} onChange={onGenreChange} placeholder={"Genre"}/>
-                      <input value={year} onChange={onYearChange} placeholder={"Year"}/>
+                      <input value={year} type={"number"} onChange={onYearChange} placeholder={"Year"}/>
                       <input value={publisher} onChange={onPublisherChange} placeholder={"Publisher"}/>
                       <input value={city} onChange={onCityChange} placeholder={"City"}/>
-                      <input value={page} onChange={onPageChange} placeholder={"Page"}/>
+                      <input value={page} type={"number"} onChange={onPageChange} placeholder={"Page"}/>
                       <input value={description} onChange={onDescriptionChange} placeholder={"Description"}/>
-                      <input value={views} onChange={onViewsChange} placeholder={"Views"}/>
+                      <input value={views} type={"number"} onChange={onViewsChange} placeholder={"Views"}/>
                       <button type="submit">Save</button>
-                      <br/>
-                      <button type="button" onClick={redirect}>Home</button>
                   </form>
               </div>
           )

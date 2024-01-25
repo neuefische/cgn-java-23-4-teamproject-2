@@ -1,6 +1,6 @@
 import {Book} from "../types/Book.ts";
 import React, {ChangeEvent, FormEvent, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 type EditBookProps = {
     books: Book[],
@@ -18,17 +18,17 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
 
     const [genre, setGenre] = useState<string>(book?.genre||"")
 
-    const [year, setYears] = useState<string>(book?.year||"")
+    const [year, setYears] = useState<number>(book?.year||2024)
 
     const [publisher, setPublisher] = useState<string>(book?.publisher||"")
 
     const [city, setCity] = useState<string>(book?.city||"")
 
-    const [page, setPage] = useState<string>(book?.page||"")
+    const [page, setPage] = useState<number>(book?.page||0)
 
     const [description, setDescription] = useState<string>(book?.description||"")
 
-    const [views, setViews] = useState<string>(book?.views||"")
+    const [views, setViews] = useState<number>(book?.views||0)
 
 
     const onTitleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -44,7 +44,7 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
     }
 
     function onYearChange(event:ChangeEvent<HTMLInputElement>) {
-        setYears(event.target.value);
+        setYears(event.target.valueAsNumber);
     }
 
     function onPublisherChange(event: ChangeEvent<HTMLInputElement>) {
@@ -56,19 +56,16 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
     }
 
     function onPageChange(event: ChangeEvent<HTMLInputElement>) {
-        setPage(event.target.value)
+        setPage(event.target.valueAsNumber)
     }
     function onDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
         setDescription(event.target.value)
     }
     function onViewsChange(event: ChangeEvent<HTMLInputElement>) {
-        setViews(event.target.value)
+        setViews(event.target.valueAsNumber)
     }
 
 
-
-
-    const navigate = useNavigate();
 
     const onSubmitEdit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault()
@@ -77,11 +74,6 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
             title, author, genre, year, publisher, city,page,description,views
         })
 
-        navigate(`/books/${book?.id}`)
-    }
-
-    const redirect = ()=>{
-        navigate("/")
     }
 
     return (
@@ -106,7 +98,7 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
 
                     <div>
                         <div>Year</div>
-                        <input name={"year"} value={year} onChange={onYearChange} placeholder="Year..."/>
+                        <input name={"year"} value={year} type={"number"} onChange={onYearChange} placeholder="Year..."/>
                     </div>
 
                     <div>
@@ -122,7 +114,7 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
 
                     <div>
                         <div>Page</div>
-                        <input name={"page"} value={page} onChange={onPageChange} placeholder="Page..."/>
+                        <input name={"page"} value={page} type={"number"} onChange={onPageChange} placeholder="Page..."/>
                     </div>
 
                     <div>
@@ -132,11 +124,10 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook}) => {
                     </div>
                     <div>
                         <div>Views</div>
-                        <input name={"views"} value={views} onChange={onViewsChange} placeholder="Views..."/>
+                        <input name={"views"} value={views} type={"number"} onChange={onViewsChange} placeholder="Views..."/>
                     </div>
 
-                    <button type="submit">Edit book</button>
-                    <button type="submit" onClick={redirect}>Home</button>
+                    <button type="submit" >Edit book</button>
                 </form>
             </div>
         </div>
