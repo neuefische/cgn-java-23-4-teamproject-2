@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 export default function NavBar() {
     return (
 
-        <div className="min-h-full">
+        <div>
             <StyledNav>
                 <NavContainer>
                     <FlexContainer>
