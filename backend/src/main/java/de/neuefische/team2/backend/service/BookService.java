@@ -39,7 +39,9 @@ public class BookService {
     public Book addBook(BookDto bookDto){
 
         String id = idService.newId();
-        Book book = new Book(id, bookDto.title(), bookDto.author());
+        Book book = new Book(id, bookDto.title(), bookDto.author(),bookDto.genre(),
+                             bookDto.year(), bookDto.publisher(), bookDto.city(),bookDto.page(),
+                             bookDto.description(), bookDto.views());
         return booksRepo.save(book);
     }
 
