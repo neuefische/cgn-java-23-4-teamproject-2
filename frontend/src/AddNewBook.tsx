@@ -1,5 +1,4 @@
 import {Book} from "./types/Book.ts";
-
 import {ChangeEvent, FormEvent, useState} from "react";
 
 
@@ -92,13 +91,10 @@ export default function AddNewBook(props : AddNewBookProps){
         setPage(0)
         setDescription("")
         setViews(0)
-
     }
-
 
           return(
               <div>
-
                   <p>Add Book</p>
                   <form onSubmit={onBookSubmit}>
                       <input value={title} onChange={onTitleChange} placeholder="Title"/>
