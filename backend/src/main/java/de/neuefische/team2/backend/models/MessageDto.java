@@ -4,6 +4,6 @@ public record MessageDto(
         String name,
         String mail,
         String message,
-        boolean gelesen
+        boolean read
 ) {
 }

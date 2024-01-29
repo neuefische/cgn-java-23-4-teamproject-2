@@ -8,6 +8,6 @@ public record Message(
         String name,
         String mail,
         String message,
-        boolean gelesen
+        boolean read
 ) {
 }

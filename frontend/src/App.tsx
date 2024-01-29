@@ -10,49 +10,72 @@ import AddNewBook from "./AddNewBook.tsx";
 import NavBar from "./components/Navbar.tsx";
 import NoPage from "./components/NoPage.tsx";
 import Home from "./components/home.tsx";
+import KontaktPage from "./components/kontakt-page.tsx";
+import {Message} from './types/Message.tsx';
 
 
 function App() {
 
     const [books, setBooks] = useState<Book[]>([])
-
+    const [messages, setMessages] = useState<Message[]>([])
     useEffect(() => {
         axios.get("/api/books").then(response => setBooks(response.data))
+    }, [])
+    useEffect(() => {
+        axios.get("/api/messages").then(response => setMessages(response.data))
     }, [])
 
     const navigate = useNavigate()
 
-    const addBook =(bookToSave : Book)=>{
-         axios.post("/api/books", bookToSave)
-             .then((response)=>{
-                 setBooks([...books, response.data])
-                 navigate("/books/"+ response.data.id)}) // after save goes to details
+    const addBook = (bookToSave: Book) => {
+        axios.post("/api/books", bookToSave)
+            .then((response) => {
+                setBooks([...books, response.data])
+                navigate("/books/" + response.data.id)
+            }) // after save goes to details
     }
-    function uploadFile(file:File){
+    const addMessage = (messageToSave: Message) => {
+        axios.post("/api/messages", messageToSave)
+            .then((response) => {
+                setMessages([...messages, response.data])
+                navigate("/books/" + response.data.id)
+            }) // after save goes to details
+    }
+
+    function uploadFile(file: File) {
         const formData = new FormData();
         formData.append("file", file!)
-        return axios.post("/api/books/img", formData, {headers: {
-                "Content-Type":"multipart/form-data",
+        return axios.post("/api/books/img", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
             }
         })
 
 
     }
-  const deleteBook = (id: string) => {
-    axios.delete(`/api/books/${id}`)
-        .then(response => {
-          setBooks([...books.filter(book => id !== book.id)]);
-          return console.log(response.data)
-        })
-  }
+
+    const deleteBook = (id: string) => {
+        axios.delete(`/api/books/${id}`)
+            .then(response => {
+                setBooks([...books.filter(book => id !== book.id)]);
+                return console.log(response.data)
+            })
+    }
+    const deleteMessage = (id: string) => {
+        axios.delete(`/api/messages/${id}`)
+            .then(response => {
+                setMessages([...messages.filter(message => id !== message.id)]);
+                return console.log(response.data)
+            })
+    }
 
     const editBook = (book: Book): void => {
         axios.put(`/api/books/${book.id}`, book)
-            .then(response =>{
-                setBooks(books.map((item) => (item.id === book.id ? response.data : item)))
-                navigate("/books/" + response.data.id)
-            }
-        )
+            .then(response => {
+                    setBooks(books.map((item) => (item.id === book.id ? response.data : item)))
+                    navigate("/books/" + response.data.id)
+                }
+            )
     }
 
     return (
@@ -61,7 +84,9 @@ function App() {
                 <Route index element={<Home/>}/>
                 <Route path="/list" element={<ViewAllBooks books={books}/>}/>
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
-                <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
+                <Route path="/kontakt" element={<KontaktPage messages={messages} saveMessage={addMessage} handleMessageDelete={deleteMessage}/>}/>
+                <Route path="/books/:id/edit"
+                       element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
                 <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
                 <Route path={"/*"} element={<NoPage/>}/>
             </Routes>
