@@ -24,8 +24,6 @@ class MessageControllerTest {
 
     @Autowired
     private MessageRepo messageRepo;
-    @Autowired
-    private IdService idService;
 
     @DirtiesContext
     @Test
