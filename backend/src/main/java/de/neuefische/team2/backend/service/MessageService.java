@@ -2,9 +2,7 @@ package de.neuefische.team2.backend.service;
 
 import de.neuefische.team2.backend.models.Message;
 import de.neuefische.team2.backend.repos.MessageRepo;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -23,14 +21,6 @@ public class MessageService {
 
     public List<Message> getMessages() {
         return messageRepo.findAll();
-    }
-
-    public Message updateMessage(Message message) {
-        return messageRepo.save(message);
-    }
-
-    public Message getById(String id) {
-        return messageRepo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No message with such id!"));
     }
 
     public Message deleteMessageById(String id) {
