@@ -24,47 +24,47 @@ export default function ViewBook(props: ViewBookProps) {
 
     return (
         <>
-            <StyledDiv /*className="book"*/>
-
+            <StyledDiv>
                 <StyledDivInfo>
                     <StyledDivInfoImg>
-                    <StyledInfo>
-                <StyledTitle>{book?.title}</StyledTitle>
-                <StyledAuthor>{book?.author}</StyledAuthor>
+                        <StyledInfo>
+                            <StyledTitle>{book?.title}</StyledTitle>
+                            <StyledAuthor>{book?.author}</StyledAuthor>
 
-                    <StyledG>{book?.genre}.</StyledG>
-                    <StyledH>
-                        <StyledPubl><i> {book?.publisher}</i>,</StyledPubl>
-                        <StyledYCP><i> {book?.year}.</i></StyledYCP>
-                        {book?.city?
-                            <StyledYCP>,<i> {book?.city}</i></StyledYCP>:null}
-                        <StyledYCP><i>P. {book?.page}</i></StyledYCP>
-                    </StyledH>
-                </StyledInfo>
-                    <StyledImgBox>
-                    <img src={book?.img} alt={`${book?.title} book Cover`} width="auto" height="300vw"/>
-                </StyledImgBox>
+                            <StyledG>{book?.genre}.</StyledG>
+                            <StyledH>
+                                <StyledPubl><i> {book?.publisher}</i>,</StyledPubl>
+                                <StyledYCP><i> {book?.year}.</i></StyledYCP>
+                                {book?.city ?
+                                    <StyledYCP>,<i> {book?.city}</i></StyledYCP> : null}
+                                <StyledYCP><i>P. {book?.page}</i></StyledYCP>
+                            </StyledH>
+                        </StyledInfo>
+                        <StyledImgBox>
+                            <img src={book?.img} alt={`${book?.title} book Cover`} width="auto" height="300vw"/>
+                        </StyledImgBox>
                     </StyledDivInfoImg>
                     <StyledDiscrDiv>
                         <StyledDiscription>{book?.description}</StyledDiscription>
                     </StyledDiscrDiv>
                     <StyledViews>Wurde {book?.views} Mal angeschaut</StyledViews>
-                <Link to={`/books/${book?.id}/edit`}>
-                    <button>Edit</button>
-                    <button className="book-delete-button" onClick={() => handleBookDelete(book?.id)}>Delete</button>
-                </Link>
+                    <Link to={`/books/${book?.id}/edit`}>
+                        <button>Edit</button>
+                        <button className="book-delete-button" onClick={() => handleBookDelete(book?.id)}>Delete
+                        </button>
+                    </Link>
                 </StyledDivInfo>
             </StyledDiv>
         </>
     );
 
 }
-const StyledDivInfoImg =styled.div`
-display:flex;
+const StyledDivInfoImg = styled.div`
+    display: flex;
     justify-content: space-around;
 `;
 const StyledDiv = styled.div`
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 `;
@@ -73,37 +73,37 @@ const StyledDivInfo = styled.div`
     flex-direction: column;
     justify-content: space-around;
 `;
-const StyledTitle= styled.h1`
+const StyledTitle = styled.h1`
     margin: 1vw;
 `;
-const StyledAuthor= styled.h2`
+const StyledAuthor = styled.h2`
     margin: 1vw;
 `;
-const StyledInfo= styled.div`
+const StyledInfo = styled.div`
     margin: 5vw 1vw 0 1vw;
 `;
 const StyledImgBox = styled.div`
     margin: 1vw;
 `;
-const StyledG =styled.p`
+const StyledG = styled.p`
     margin: 1vw;
 `;
 
-const StyledYCP= styled.p`
+const StyledYCP = styled.p`
     margin: 1vw;
 `;
-const StyledH= styled.div`
+const StyledH = styled.div`
     display: flex;
     flex-direction: row;
 `;
-const StyledPubl= styled.p`
+const StyledPubl = styled.p`
     margin: 1vw;
     font: italic;
 `;
-const StyledDiscrDiv= styled.div`
+const StyledDiscrDiv = styled.div`
     margin: 0 10vw 0 10vw;
 `;
-const StyledDiscription= styled.p`
+const StyledDiscription = styled.p`
 `;
-const StyledViews= styled.p`
+const StyledViews = styled.p`
 `;

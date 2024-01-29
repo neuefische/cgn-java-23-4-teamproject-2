@@ -6,7 +6,7 @@ import {AxiosPromise} from "axios";
 type EditBookProps = {
     books: Book[],
     editBook: (book: Book) => void
-    onUpload: (file:File) => AxiosPromise
+    onUpload: (file: File) => AxiosPromise
 }
 
 export const EditBook: React.FC<EditBookProps> = ({books, editBook, onUpload}) => {
@@ -14,29 +14,30 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook, onUpload}) =
     const {id} = useParams();
 
     const book: Book | undefined = books.find(book => book.id === id);
-    console.log(book);
 
     const [title, setTitle] = useState<string>(book?.title || "")
     const [author, setAuthor] = useState<string>(book?.author || "")
     const [img, setImg] = useState<string>(book?.img || "")
 
-    const [genre, setGenre] = useState<string>(book?.genre||"")
+    const [genre, setGenre] = useState<string>(book?.genre || "")
 
-    const [year, setYears] = useState<number>(book?.year||0)
+    const [year, setYears] = useState<number>(book?.year || 0)
 
-    const [publisher, setPublisher] = useState<string>(book?.publisher||"")
+    const [publisher, setPublisher] = useState<string>(book?.publisher || "")
 
-    const [city, setCity] = useState<string>(book?.city||"")
+    const [city, setCity] = useState<string>(book?.city || "")
 
-    const [page, setPage] = useState<number>(book?.page||0)
+    const [page, setPage] = useState<number>(book?.page || 0)
 
-    const [description, setDescription] = useState<string>(book?.description||"")
+    const [description, setDescription] = useState<string>(book?.description || "")
 
-    const [views, setViews] = useState<number>(book?.views||0)
-const [file, setFile] = useState<File|null>(null);
-    function handleChangeFile(event: ChangeEvent<HTMLInputElement>){
-        if(!event.target.files){return;
-        }else{
+    const [views, setViews] = useState<number>(book?.views || 0)
+    const [file, setFile] = useState<File | null>(null);
+
+    function handleChangeFile(event: ChangeEvent<HTMLInputElement>) {
+        if (!event.target.files) {
+            return;
+        } else {
             setFile(event.target.files[0])
         }
     }
@@ -48,14 +49,12 @@ const [file, setFile] = useState<File|null>(null);
     const onAuthorChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setAuthor(event.target.value)
     }
-    /*const onImgChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setImg(event.target.value)
-    }*/
+
     function onGenreChange(event: ChangeEvent<HTMLInputElement>) {
         setGenre(event.target.value)
     }
 
-    function onYearChange(event:ChangeEvent<HTMLInputElement>) {
+    function onYearChange(event: ChangeEvent<HTMLInputElement>) {
         setYears(event.target.valueAsNumber);
     }
 
@@ -63,37 +62,39 @@ const [file, setFile] = useState<File|null>(null);
         setPublisher(event.target.value)
     }
 
-    function onCityChange(event:ChangeEvent<HTMLInputElement>) {
+    function onCityChange(event: ChangeEvent<HTMLInputElement>) {
         setCity(event.target.value);
     }
 
     function onPageChange(event: ChangeEvent<HTMLInputElement>) {
         setPage(event.target.valueAsNumber)
     }
+
     function onDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
         setDescription(event.target.value)
     }
+
     function onViewsChange(event: ChangeEvent<HTMLInputElement>) {
         setViews(event.target.valueAsNumber)
     }
-
 
 
     const onSubmitEdit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault()
         onUpload(file!).then((r) => {
             setImg(r.data)
-        editBook({
-            id: book?.id || "",
-            title, author, img:r.data, genre, year, publisher, city,page,description,views
-        })
-    }).catch((e)=> {
-            throw(e)});
-        }
+            editBook({
+                id: book?.id || "",
+                title, author, img: r.data, genre, year, publisher, city, page, description, views
+            })
+        }).catch((e) => {
+            throw (e)
+        });
+    }
 
     return (
-        <div /*className="book-detail"*/>
-            <div /*className="book"*/>
+        <div>
+            <div>
                 <form onSubmit={onSubmitEdit}>
                     <div>
                         <div>Title</div>
@@ -106,9 +107,9 @@ const [file, setFile] = useState<File|null>(null);
                     </div>
                     <div>
                         <div>Image</div>
-                        <input type="file" onChange={handleChangeFile} />
-                        {img? <img src={img} alt={`${title} book cover`} width="auto" height="300vw"/> :
-                            file? <img src={URL.createObjectURL(file)} alt={"Bild"} width="auto" height="300vw"/>:null}
+                        <input type="file" onChange={handleChangeFile}/>
+                        {file ? <img src={URL.createObjectURL(file)} alt={"Bild"} width="auto" height="300vw"/> : img ?
+                            <img src={img} alt={`${title} book cover`} width="auto" height="300vw"/> : null}
                     </div>
                     <div>
                         <div>Genre</div>
