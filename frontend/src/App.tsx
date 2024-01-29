@@ -28,7 +28,16 @@ function App() {
                  setBooks([...books, response.data])
                  navigate("/books/"+ response.data.id)})
     }
+    function uploadFile(file:File){
+        const formData = new FormData();
+        formData.append("file", file!)
+        return axios.post("/api/books/img", formData, {headers: {
+                "Content-Type":"multipart/form-data",
+            }
+        })
 
+
+    }
   const deleteBook = (id: string) => {
     axios.delete(`/api/books/${id}`)
         .then(response => {
@@ -40,7 +49,7 @@ function App() {
     const editBook = (book: Book): void => {
         axios.put(`/api/books/${book.id}`, book)
             .then(response =>{
-                setBooks(books.map((item) => (item.id === book.id ? response.data : book)))
+                setBooks(books.map((item) => (item.id === book.id ? response.data : item)))
                 navigate("/books/" + response.data.id)
             }
         )
@@ -52,8 +61,8 @@ function App() {
                 <Route index element={<Home/>}/>
                 <Route path="/list" element={<ViewAllBooks books={books}/>}/>
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
-                <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook}/>}/>
-                <Route path={"/books/add"} element={<AddNewBook saveBook={addBook}/>}/>
+                <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
+                <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
                 <Route path={"/*"} element={<NoPage/>}/>
             </Routes>
         </>
