@@ -72,11 +72,6 @@ export default function AddNewBook(props: AddNewBookProps) {
         setDescription(event.target.value)
     }
 
-    function onViewsChange(event: ChangeEvent<HTMLInputElement>) {
-        setViews(event.target.valueAsNumber)
-    }
-
-
     const onBookSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         props.onUpload(file!).then((r) => {
@@ -111,7 +106,6 @@ export default function AddNewBook(props: AddNewBookProps) {
                 throw(e)});
     }
 
-
     return (
         <StyledDiv>
 
@@ -129,7 +123,7 @@ export default function AddNewBook(props: AddNewBookProps) {
                 <SInput value={city} onChange={onCityChange} placeholder={"City"}/>
                 <SInput value={page} type={"number"} onChange={onPageChange} placeholder={"Page"}/>
                 <SInput value={description} onChange={onDescriptionChange} placeholder={"Description"}/>
-                <SInput value={views} type={"number"} onChange={onViewsChange} placeholder={"Views"}/>
+
                 <button type="submit">Save</button>
             </StyledFormAdd>
         </StyledDiv>

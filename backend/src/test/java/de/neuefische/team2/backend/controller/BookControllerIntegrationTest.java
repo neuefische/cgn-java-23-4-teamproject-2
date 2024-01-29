@@ -60,6 +60,7 @@ public class BookControllerIntegrationTest {
         assertEquals(200, mvcResult.getResponse().getStatus() );
     }
 
+    @DirtiesContext
     @Test
     void updateBooksTest_shouldReturnBookWithUpdatedAuthor_whenBookWithUpdatedAuthorSent() throws Exception {
         //GIVEN
@@ -109,6 +110,7 @@ public class BookControllerIntegrationTest {
         assertEquals(200, mvcResult.getResponse().getStatus() );
     }
 
+    @DirtiesContext
     @Test
     void getBookByIdTest_shouldReturnObjectWithTheId() throws Exception {
         //GIVEN
@@ -132,13 +134,15 @@ public class BookControllerIntegrationTest {
                              "city": "London",
                              "page": 100,
                              "description": "very good book",
-                             "views": 0
+                             "views": 1
                         }
                         """))
                 .andReturn();
         Assertions.assertEquals(200, mvcResult.getResponse().getStatus() );
 
     }
+
+    @DirtiesContext
     @Test
     void getBookByNoExistingIdTest_shouldReturnNoObject() throws Exception {
         //GIVEN
@@ -154,6 +158,7 @@ public class BookControllerIntegrationTest {
         Assertions.assertEquals(404, mvcResult.getResponse().getStatus());
 
     }
+
     @DirtiesContext
     @Test
     void deleteBook_shouldReturnBook_whenThisObjectWasDeletedFromRepository() throws Exception {
@@ -187,6 +192,7 @@ public class BookControllerIntegrationTest {
         assertEquals(200, mvcResult.getResponse().getStatus() );
     }
 
+    @DirtiesContext
     @Test
     void addBookTest_shouldReturnOneObject_whenObjectWasSavedInRepository() throws Exception {
 

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 
 @Service
@@ -27,13 +29,27 @@ public class BookService {
     public Book updateBook(Book book) {
         return booksRepo.save(book);
     }
-    public Book getById(String id){return booksRepo.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
+
+    public Book getById(String id){
+        Optional<Book> byId = booksRepo.findById(id);
+        if (byId.isPresent()){
+            Integer views = byId.get().views();
+             views=views+1;
+            Book book = byId.get().withViews(views);
+            booksRepo.save(book);
+            return book;
+        }
+         throw(new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
     }
 
     public Book deleteBookById(String id) {
-        Book bookToDelete = getById(id);
-        booksRepo.delete(bookToDelete);
-        return bookToDelete;
+
+        Optional<Book> byId = booksRepo.findById(id);
+        if (byId.isPresent()){
+          booksRepo.delete(byId.get());
+          return byId.get();
+        }
+        throw (new NoSuchElementException());
     }
 
     public Book addBook(BookDto bookDto){

@@ -14,7 +14,6 @@ export default function ViewBook(props: ViewBookProps) {
     const {id} = useParams();
     useEffect(() => {
         axios.get(`/api/books/${id}`).then(response => setBooks(response.data))
-
     }, [])
 
     const handleBookDelete = (id: string | undefined) => {
@@ -26,6 +25,7 @@ export default function ViewBook(props: ViewBookProps) {
     return (
         <>
             <StyledDiv /*className="book"*/>
+
                 <StyledDivInfo>
                     <StyledDivInfoImg>
                     <StyledInfo>
