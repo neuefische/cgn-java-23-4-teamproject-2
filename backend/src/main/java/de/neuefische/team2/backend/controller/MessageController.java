@@ -1,6 +1,7 @@
 package de.neuefische.team2.backend.controller;
 
 import de.neuefische.team2.backend.models.Message;
+import de.neuefische.team2.backend.models.MessageDto;
 import de.neuefische.team2.backend.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,8 @@ public class MessageController {
     }
 
     @PostMapping
-    public Message addMessage(@RequestBody Message message) {
-        return messageService.addMessage(message);
+    public Message addMessage(@RequestBody MessageDto messageDto) {
+        return messageService.addMessage(messageDto);
     }
 
 }

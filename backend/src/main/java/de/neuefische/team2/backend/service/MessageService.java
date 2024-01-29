@@ -1,6 +1,7 @@
 package de.neuefische.team2.backend.service;
 
 import de.neuefische.team2.backend.models.Message;
+import de.neuefische.team2.backend.models.MessageDto;
 import de.neuefische.team2.backend.repos.MessageRepo;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +33,9 @@ public class MessageService {
         throw (new NoSuchElementException());
     }
 
-    public Message addMessage(Message message) {
+    public Message addMessage(MessageDto messageDto) {
         String id = idService.newId();
-        Message messageNew = new Message(id, message.name(), message.mail(), message.message(), false);
+        Message messageNew = new Message(id, messageDto.name(), messageDto.mail(), messageDto.message(), false);
         return messageRepo.save(messageNew);
     }
 
