@@ -1,5 +1,4 @@
 import {Book} from "./types/Book.ts";
-
 import {ChangeEvent, FormEvent, useState} from "react";
 
 
@@ -27,7 +26,6 @@ export default function AddNewBook(props : AddNewBookProps){
     const [description, setDescription] = useState<string>("")
 
     const [views, setViews] = useState<number>(0)
-
 
 
     function onTitleChange(event:ChangeEvent<HTMLInputElement>) {
@@ -59,10 +57,6 @@ export default function AddNewBook(props : AddNewBookProps){
     function onDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
             setDescription(event.target.value)
     }
-    function onViewsChange(event: ChangeEvent<HTMLInputElement>) {
-            setViews(event.target.valueAsNumber)
-    }
-
 
 
     const onBookSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -92,13 +86,10 @@ export default function AddNewBook(props : AddNewBookProps){
         setPage(0)
         setDescription("")
         setViews(0)
-
     }
-
 
           return(
               <div>
-
                   <p>Add Book</p>
                   <form onSubmit={onBookSubmit}>
                       <input value={title} onChange={onTitleChange} placeholder="Title"/>
@@ -109,7 +100,6 @@ export default function AddNewBook(props : AddNewBookProps){
                       <input value={city} onChange={onCityChange} placeholder={"City"}/>
                       <input value={page} type={"number"} onChange={onPageChange} placeholder={"Page"}/>
                       <input value={description} onChange={onDescriptionChange} placeholder={"Description"}/>
-                      <input value={views} type={"number"} onChange={onViewsChange} placeholder={"Views"}/>
                       <button type="submit">Save</button>
                   </form>
               </div>

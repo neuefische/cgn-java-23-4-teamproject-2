@@ -26,7 +26,7 @@ function App() {
          axios.post("/api/books", bookToSave)
              .then((response)=>{
                  setBooks([...books, response.data])
-                 navigate("/books/"+ response.data.id)})
+                 navigate("/books/"+ response.data.id)}) // after save goes to details
     }
 
   const deleteBook = (id: string) => {
