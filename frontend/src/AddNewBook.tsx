@@ -28,7 +28,6 @@ export default function AddNewBook(props : AddNewBookProps){
     const [views, setViews] = useState<number>(0)
 
 
-
     function onTitleChange(event:ChangeEvent<HTMLInputElement>) {
             setTitle(event.target.value);
     }
@@ -58,10 +57,6 @@ export default function AddNewBook(props : AddNewBookProps){
     function onDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
             setDescription(event.target.value)
     }
-    function onViewsChange(event: ChangeEvent<HTMLInputElement>) {
-            setViews(event.target.valueAsNumber)
-    }
-
 
 
     const onBookSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -105,7 +100,6 @@ export default function AddNewBook(props : AddNewBookProps){
                       <input value={city} onChange={onCityChange} placeholder={"City"}/>
                       <input value={page} type={"number"} onChange={onPageChange} placeholder={"Page"}/>
                       <input value={description} onChange={onDescriptionChange} placeholder={"Description"}/>
-                      <input value={views} type={"number"} onChange={onViewsChange} placeholder={"Views"}/>
                       <button type="submit">Save</button>
                   </form>
               </div>

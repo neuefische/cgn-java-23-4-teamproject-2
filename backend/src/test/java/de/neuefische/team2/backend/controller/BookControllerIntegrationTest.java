@@ -179,7 +179,7 @@ public class BookControllerIntegrationTest {
                              "city": "London",
                              "page": 100,
                              "description": "very good book",
-                             "views": 1
+                             "views": 0
                                  }
                                 """))
                 .andReturn();
