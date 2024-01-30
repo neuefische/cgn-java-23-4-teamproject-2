@@ -21,7 +21,6 @@ function App() {
     }, [])
 
     const navigate = useNavigate()
-
     const addBook =(bookToSave : Book)=>{
          axios.post("/api/books", bookToSave)
              .then((response)=>{

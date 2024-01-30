@@ -12,6 +12,7 @@ export default function ViewBook(props: ViewBookProps) {
 
     const [book, setBooks] = useState<Book>();
     const {id} = useParams();
+
     useEffect(() => {
         axios.get(`/api/books/${id}`).then(response => setBooks(response.data))
     }, [])
