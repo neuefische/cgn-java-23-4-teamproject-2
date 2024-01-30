@@ -1,0 +1,1 @@
+.books{display:flex;flex-wrap:wrap;justify-content:center;gap:4rem}.books .book{box-shadow:0 2px 4px #263b381a,0 0 0 1.5px #2632381a;margin:.25rem;display:flex;height:18rem;width:20rem;flex-direction:column;justify-content:space-between;border-radius:.375rem;border-color:#ddd;background-color:#fff;padding:1.25rem}

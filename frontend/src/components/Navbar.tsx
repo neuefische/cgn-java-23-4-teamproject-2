@@ -56,6 +56,7 @@ const NavLinks = styled(NavLink)`
     color: #ffffff;
     background-color: #4b5563;
     width: 10vw;
+    text-decoration: none;
     border-radius: 0.375rem;
     padding: 0.75rem 1rem;
     font-size: 0.875rem;
