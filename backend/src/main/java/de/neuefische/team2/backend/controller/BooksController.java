@@ -22,7 +22,7 @@ public class BooksController {
         return bookService.getBooks();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public Book updateBook(@RequestBody Book book) {
         return bookService.updateBook(book);
     }
@@ -35,7 +35,7 @@ public class BooksController {
         return bookService.deleteBookById(id);
     }
 
-    @PostMapping
+    @PostMapping("/{id}")
     public Book addBook(@RequestBody BookDto bookDto){
         return bookService.addBook(bookDto);
     }

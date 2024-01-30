@@ -28,5 +28,8 @@ public class MessageController {
     public Message addMessage(@RequestBody MessageDto messageDto) {
         return messageService.addMessage(messageDto);
     }
-
+    @PutMapping("/{id}")
+    public Message updateMessage(@RequestBody Message message) {
+        return messageService.updateMessage(message);
+    }
 }

@@ -1,5 +1,6 @@
 package de.neuefische.team2.backend.service;
 
+import de.neuefische.team2.backend.models.Book;
 import de.neuefische.team2.backend.models.Message;
 import de.neuefische.team2.backend.models.MessageDto;
 import de.neuefische.team2.backend.repos.MessageRepo;
@@ -32,7 +33,9 @@ public class MessageService {
         }
         throw (new NoSuchElementException());
     }
-
+    public Message updateMessage(Message message) {
+        return messageRepo.save(message);
+    }
     public Message addMessage(MessageDto messageDto) {
         String id = idService.newId();
         Message messageNew = new Message(id, messageDto.name(), messageDto.mail(), messageDto.message(), false);

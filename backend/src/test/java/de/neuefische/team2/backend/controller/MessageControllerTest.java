@@ -1,5 +1,6 @@
 package de.neuefische.team2.backend.controller;
 
+import de.neuefische.team2.backend.models.Book;
 import de.neuefische.team2.backend.repos.MessageRepo;
 import de.neuefische.team2.backend.models.Message;
 import de.neuefische.team2.backend.service.IdService;
@@ -12,6 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -94,5 +96,39 @@ class MessageControllerTest {
                         """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
 
+    }
+    @DirtiesContext
+    @Test
+    void updateMessageTest_shouldReturnMessageWithUpdates_whenMessageWithUpdatesSent() throws Exception {
+        //GIVEN
+        messageRepo.save(new Message("1", "TestTitle", "email","TestText", true));
+
+        //WHEN
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/messages/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                              {
+                              "id":"1",
+                              "name":"TestTitle",
+                              "mail":"email",
+                              "message":"TestText",
+                              "read": true
+                              }
+                              """))
+
+                //THEN
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().json("""
+                        {
+                              "id":"1",
+                              "name":"TestTitle",
+                              "mail":"email",
+                              "message":"TestText",
+                              "read": true
+                              }
+                        """))
+                .andReturn();
+
+        assertEquals(200, mvcResult.getResponse().getStatus() );
     }
 }

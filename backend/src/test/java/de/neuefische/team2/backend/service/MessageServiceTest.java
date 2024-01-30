@@ -81,6 +81,24 @@ class MessageServiceTest {
 
         Message expected = new Message("3", "Name", "Mail", "Message", false);
         assertEquals(expected, actual);
+    }
+    @Test
+    void updateMessageTest_returnMessage_whenMessageWithUpdatedSent() {
+        //GIVEN
 
+        Message udpatedMessage =   new Message("1", "TestName", "mail", "TestMessage", true);
+
+        Mockito.when(messageRepo.save(Mockito.any())).thenReturn(udpatedMessage);
+
+        MessageService messageService = new MessageService(messageRepo,idService);
+
+        //WHEN
+        Message actual = messageService.updateMessage(udpatedMessage);
+
+        //THEN
+        assertEquals(udpatedMessage, actual);
+
+        Mockito.verify(messageRepo, Mockito.times(1)).save(udpatedMessage);
+        Mockito.verifyNoMoreInteractions(messageRepo);
     }
 }
