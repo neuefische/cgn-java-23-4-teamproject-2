@@ -49,6 +49,6 @@ const StyledImg = styled.img`
     margin: 1vw 0 1vw 0;
     height: auto;
     width: auto;
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain`;

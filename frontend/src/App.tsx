@@ -59,6 +59,7 @@ function App() {
         axios.delete(`/api/books/${id}`)
             .then(response => {
                 setBooks([...books.filter(book => id !== book.id)]);
+                navigate("/list")
                 return console.log(response.data)
             })
     }
@@ -66,6 +67,7 @@ function App() {
         axios.delete(`/api/messages/${id}`)
             .then(response => {
                 setMessages([...messages.filter(message => id !== message.id)]);
+                navigate("/kontakt" )
                 return console.log(response.data)
             })
     }

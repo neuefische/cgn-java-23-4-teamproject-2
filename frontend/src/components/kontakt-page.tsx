@@ -12,7 +12,7 @@ export default function KontaktPage(props:KontaktProps){
     return(
         <>
             <KontaktForm onSave={props.saveMessage}/>
-            <MessageList/>
+            <MessageList onDelete={props.handleMessageDelete} messages={props.messages}/>
         </>
     )
 }
