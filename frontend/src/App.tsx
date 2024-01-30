@@ -28,6 +28,12 @@ function App() {
 
     const navigate = useNavigate()
 
+    function editMessage(message:Message) {
+        axios.put(`/api/messages/${message.id}`, {...message, read: !message.read})
+            .then((response) => {
+                console.log(response)
+                setMessages(messages.map((item) => (item.id === message.id ? response.data : item)))})
+    }
     const addBook = (bookToSave: Book) => {
         axios.post("/api/books", bookToSave)
             .then((response) => {
@@ -87,7 +93,7 @@ function App() {
                 <Route index element={<Home/>}/>
                 <Route path="/list" element={<ViewAllBooks books={books}/>}/>
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
-                <Route path="/kontakt" element={<KontaktPage messages={messages} saveMessage={addMessage} handleMessageDelete={deleteMessage}/>}/>
+                <Route path="/kontakt" element={<KontaktPage messages={messages} saveMessage={addMessage} handleMessageDelete={deleteMessage} handleEdit={editMessage}/>}/>
                 <Route path="/books/:id/edit"
                        element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
                 <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
