@@ -12,6 +12,7 @@ import NoPage from "./components/NoPage.tsx";
 import Home from "./components/home.tsx";
 import KontaktPage from "./components/kontakt-page.tsx";
 import {Message} from './types/Message.tsx';
+import Thanks from './components/thanks.tsx';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
         axios.post("/api/messages", messageToSave)
             .then((response) => {
                 setMessages([...messages, response.data])
-                navigate("/books/" + response.data.id)
+                navigate("/thanks")
             }) // after save goes to details
     }
 
@@ -89,6 +90,7 @@ function App() {
                        element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
                 <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
                 <Route path={"/*"} element={<NoPage/>}/>
+                <Route path={"/thanks"} element={<Thanks/>}/>
             </Routes>
         </>
     )
