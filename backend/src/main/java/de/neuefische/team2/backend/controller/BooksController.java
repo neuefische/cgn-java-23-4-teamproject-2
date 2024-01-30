@@ -22,7 +22,7 @@ public class BooksController {
         return bookService.getBooks();
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Book updateBook(@RequestBody Book book) {
         return bookService.updateBook(book);
     }
