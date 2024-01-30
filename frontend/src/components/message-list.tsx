@@ -1,5 +1,6 @@
 import {Message} from "../types/Message.tsx";
 import MessageListItem from "./message-list-item.tsx";
+import styled from "styled-components";
 
 type MessagListProps = {
     messages: Message[],
@@ -14,10 +15,14 @@ function handleDelete(id:string){
 }
 
     return (
-        <ul>
+        <StyledUl>
             {props.messages.map(message =>
                 <MessageListItem key={message.id} message={message} handleMessageDelete={handleDelete} handleMessageEdit={props.onChangeStatus}/>
             )}
-        </ul>
+        </StyledUl>
     )
 }
+const StyledUl = styled.ul`
+    padding:0;
+    margin: 0;
+`;

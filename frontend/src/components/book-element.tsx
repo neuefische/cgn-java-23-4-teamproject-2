@@ -33,7 +33,6 @@ const StyledDiv = styled.div`
     align-items: center;
     box-shadow: 0 2px 4px 0 rgba(38, 59, 56, 0.10), 0 0 0 1.5px rgba(38, 50, 56, 0.10);
     margin: .25rem;
-    display: flex;
     height: 18rem;
     width: 20rem;
     border-radius: 0.375rem;

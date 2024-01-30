@@ -4,7 +4,8 @@ export default function Home() {
 
     return (
         <StyledDiv>
-            <StyledP>Herzlich willkommen in meiner privaten Hausbibliothek! Ich freue mich sehr, dass Sie den Weg hierher
+            <h2>Herzlich willkommen in meiner privaten Hausbibliothek!</h2>
+            <StyledP> Ich freue mich sehr, dass Sie den Weg hierher
                 gefunden haben und lade Sie ein, sich in meinem persönlichen Bücherparadies umzusehen. Als
                 leidenschaftlicher Leser und Sammler habe ich im Laufe der Jahre eine vielfältige Auswahl an Büchern aus
                 verschiedenen Genres und Epochen zusammengetragen.
@@ -22,8 +23,9 @@ export default function Home() {
 }
 const StyledDiv = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     width:99vw;
 `;
 const StyledP = styled.p`
