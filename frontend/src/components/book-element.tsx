@@ -2,7 +2,7 @@ import {Book} from "../types/Book.ts";
 import React from "react";
 import { CiHeart } from "react-icons/ci";
 
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 type BookElementProps = {
@@ -29,36 +29,56 @@ export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isF
 
     return (
 
-
-         <div>
+        <div>
 
             <div onClick={onboxclick} className="book">
 
-                <div>{book.title}</div>
+                <StyledDiv>
+                    <StyledH>{book.title}</StyledH>
 
-                <div className={isFavorite?"heartIcon heartIcon-active":"heartIcon"} onClick={onheartClick}>
-                    <CiHeart/>
-                </div>
+                    <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
+
+                    <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
+                        <CiHeart/>
+                    </div>
+
+                </StyledDiv>
 
             </div>
 
         </div>
 
+        /*         <div>
+
+                    <div onClick={onboxclick} className="book">
+
+                        <div>{book.title}</div>
+
+                        <div className={isFavorite?"heartIcon heartIcon-active":"heartIcon"} onClick={onheartClick}>
+                            <CiHeart/>
+                        </div>
+
+                    </div>
+
+                </div>*/
 
 
-/*        <StyledLink to={`/books/${book.id}`}>
+        /*       <StyledLink to={`/books/${book.id}`}>
 
-            <StyledDiv>
-                <StyledH>{book.title}</StyledH>
-                <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
+                    <StyledDiv>
+                        <StyledH>{book.title}</StyledH>
 
-                <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
-                    <CiHeart/>
-                </div>
+                        <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
 
-            </StyledDiv>
+                        <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
+                            <CiHeart/>
+                        </div>
 
-        </StyledLink>*/
+                    </StyledDiv>
+
+                </StyledLink>*/
+
+
     );
 
 }
@@ -82,9 +102,9 @@ const StyledDiv = styled.div`
     padding: 1.25rem;
 `;
 
-const StyledLink = styled(Link)`
+/*const StyledLink = styled(Link)`
     text-decoration: none;
-`;
+`;*/
 const StyledImg = styled.img`
     margin: 1vw 0 1vw 0;
     height: auto;
