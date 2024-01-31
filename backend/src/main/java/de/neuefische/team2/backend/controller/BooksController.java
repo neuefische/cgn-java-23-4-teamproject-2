@@ -37,7 +37,7 @@ public class BooksController {
         return bookService.deleteBookById(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public Book addBook(@RequestBody BookDto bookDto) {
         return bookService.addBook(bookDto);
     }

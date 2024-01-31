@@ -1,9 +1,9 @@
 import {ChangeEvent, FormEvent, useState} from "react"
-import {Message} from "../types/Message"
 import styled from "styled-components";
+import {MessageDto} from "../types/MessageDto.tsx";
 
 type FormProps = {
-    onSave: (messageToSave: Message) => void
+    onSave: (messageToSave: MessageDto) => void
 }
 export default function KontaktForm(props: FormProps) {
 
@@ -25,12 +25,10 @@ export default function KontaktForm(props: FormProps) {
 
     function onMessageSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const messageNew: Message = {
-            id: "1",
+        const messageNew: MessageDto = {
             name: name,
             mail: mail,
             message: message,
-            read: false
         }
         props.onSave(messageNew)
         setName("")

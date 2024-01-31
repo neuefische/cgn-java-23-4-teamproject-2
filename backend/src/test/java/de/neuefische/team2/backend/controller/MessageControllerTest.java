@@ -33,7 +33,7 @@ class MessageControllerTest {
         //GIVEN
         messageRepo.save(new Message("1", "Name", "mail", "Text", false));
         //WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/api/messages"))
+        mvc.perform(MockMvcRequestBuilders.get("/api/messages"))
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -44,9 +44,7 @@ class MessageControllerTest {
                         "message":"Text",
                         "read": false
                         }]
-                        """))
-                .andReturn();
-        assertEquals(200, mvcResult.getResponse().getStatus());
+                        """));
     }
 
     @Test
@@ -54,7 +52,7 @@ class MessageControllerTest {
         //GIVEN
         messageRepo.save(new Message("1", "Name", "mail", "Text", false));
         //WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete("/api/messages/1"))
+        mvc.perform(MockMvcRequestBuilders.delete("/api/messages/1"))
                 //THEN
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -65,9 +63,7 @@ class MessageControllerTest {
                         "message":"Text",
                         "read": false
                         }
-                        """))
-                .andReturn();
-        assertEquals(200, mvcResult.getResponse().getStatus());
+                        """));
     }
 
     @Test
@@ -104,7 +100,7 @@ class MessageControllerTest {
         messageRepo.save(new Message("1", "TestTitle", "email","TestText", true));
 
         //WHEN
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put("/api/messages/1")
+        mvc.perform(MockMvcRequestBuilders.post("/api/messages/1/update")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
                               {
@@ -112,7 +108,7 @@ class MessageControllerTest {
                               "name":"TestTitle",
                               "mail":"email",
                               "message":"TestText",
-                              "read": true
+                              "read": false
                               }
                               """))
 
@@ -124,11 +120,10 @@ class MessageControllerTest {
                               "name":"TestTitle",
                               "mail":"email",
                               "message":"TestText",
-                              "read": true
+                              "read": false
                               }
                         """))
                 .andReturn();
 
-        assertEquals(200, mvcResult.getResponse().getStatus() );
     }
 }

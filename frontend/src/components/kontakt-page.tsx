@@ -3,10 +3,11 @@ import KontaktForm from "./kontakt-form";
 import MessageList from "./message-list";
 import styled from "styled-components";
 import {useState} from "react";
+import {MessageDto} from "../types/MessageDto.tsx";
 
 type KontaktProps = {
     messages: Message[],
-    saveMessage: (messageToSave: Message) => void,
+    saveMessage: (messageToSave: MessageDto) => void,
     handleMessageDelete: (id: string) => void,
     handleEdit: (message: Message) => void
 

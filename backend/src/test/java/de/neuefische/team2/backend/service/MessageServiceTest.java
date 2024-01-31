@@ -1,9 +1,7 @@
 package de.neuefische.team2.backend.service;
 
-import de.neuefische.team2.backend.models.Book;
-import de.neuefische.team2.backend.models.BookDto;
 import de.neuefische.team2.backend.models.Message;
-import de.neuefische.team2.backend.models.MessageDto;
+import de.neuefische.team2.backend.models.MessageDtoPost;
 import de.neuefische.team2.backend.repos.MessageRepo;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -38,7 +36,7 @@ class MessageServiceTest {
     @Test
     void deleteMessageById() {
         //GIVEN
-        Mockito.when(messageRepo.findById(Mockito.any())).thenReturn(
+        Mockito.when(messageRepo.findById("1")).thenReturn(
                 Optional.of(new Message("1", "Name", "Mail", "Message", false)
                 ));
 
@@ -60,7 +58,7 @@ class MessageServiceTest {
 
     @Test
     void addMessageTest_returnMessage() {
-        MessageDto messageDto = new MessageDto( "Name", "Mail", "Message", false);
+        MessageDtoPost messageDtoPost = new MessageDtoPost( "Name", "Mail", "Message");
 
         Message message = new Message("3", "Name", "Mail", "Message", false);
 
@@ -73,7 +71,7 @@ class MessageServiceTest {
 
 
         // WHEN
-        Message actual = messageService.addMessage(messageDto);
+        Message actual = messageService.addMessage(messageDtoPost);
 
         // THEN
         Mockito.verify(messageRepo).save(message);
@@ -85,20 +83,22 @@ class MessageServiceTest {
     @Test
     void updateMessageTest_returnMessage_whenMessageWithUpdatedSent() {
         //GIVEN
-
-        Message udpatedMessage =   new Message("1", "TestName", "mail", "TestMessage", true);
+        Mockito.when(messageRepo.findById("1")).thenReturn(
+                Optional.of(new Message("1", "Name", "Mail", "Message", false)
+                ));
+        Message udpatedMessage =   new Message("1", "Name", "Mail", "Message", true);
 
         Mockito.when(messageRepo.save(Mockito.any())).thenReturn(udpatedMessage);
 
         MessageService messageService = new MessageService(messageRepo,idService);
 
         //WHEN
-        Message actual = messageService.updateMessage(udpatedMessage);
+        Message actual = messageService.updateStatus("1");
 
         //THEN
         assertEquals(udpatedMessage, actual);
 
         Mockito.verify(messageRepo, Mockito.times(1)).save(udpatedMessage);
-        Mockito.verifyNoMoreInteractions(messageRepo);
+
     }
 }

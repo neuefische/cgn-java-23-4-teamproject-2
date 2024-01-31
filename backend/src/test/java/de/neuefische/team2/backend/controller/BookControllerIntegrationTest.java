@@ -198,7 +198,7 @@ public class BookControllerIntegrationTest {
 
         // GIVEN
         // WHEN
-        mvc.perform(MockMvcRequestBuilders.post("/api/books/add")
+        mvc.perform(MockMvcRequestBuilders.post("/api/books")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                          {

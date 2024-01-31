@@ -2,7 +2,8 @@ package de.neuefische.team2.backend.service;
 
 
 import de.neuefische.team2.backend.models.Message;
-import de.neuefische.team2.backend.models.MessageDto;
+import de.neuefische.team2.backend.models.MessageDtoPost;
+import de.neuefische.team2.backend.models.MessageDtoPut;
 import de.neuefische.team2.backend.repos.MessageRepo;
 import org.springframework.stereotype.Service;
 
@@ -31,16 +32,22 @@ public class MessageService {
             messageRepo.delete(byId.get());
             return byId.get();
         }
-        throw (new NoSuchElementException());
+        throw (new NoSuchElementException("No message with such id"));
     }
 
-    public Message updateMessage(Message message) {
-        return messageRepo.save(message);
+    public Message updateStatus(String id) {
+        Optional<Message> message = messageRepo.findById(id);
+        if(message.isPresent() && message.get().read() == true ) {
+            return messageRepo.save(new Message(id, message.get().name(), message.get().mail(), message.get().message(), false ));
+        } else if(message.isPresent() && message.get().read() == false ){
+            return messageRepo.save(new Message(id, message.get().name(), message.get().mail(), message.get().message(), true ));
+        }
+        throw (new NoSuchElementException("No message with such id"));
     }
 
-    public Message addMessage(MessageDto messageDto) {
+    public Message addMessage(MessageDtoPost messageDtoPost) {
         String id = idService.newId();
-        Message messageNew = new Message(id, messageDto.name(), messageDto.mail(), messageDto.message(), false);
+        Message messageNew = new Message(id, messageDtoPost.name(), messageDtoPost.mail(), messageDtoPost.message(), false);
         return messageRepo.save(messageNew);
     }
 

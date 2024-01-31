@@ -1,7 +1,7 @@
 package de.neuefische.team2.backend.controller;
 
 import de.neuefische.team2.backend.models.Message;
-import de.neuefische.team2.backend.models.MessageDto;
+import de.neuefische.team2.backend.models.MessageDtoPost;
 import de.neuefische.team2.backend.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +25,12 @@ public class MessageController {
     }
 
     @PostMapping
-    public Message addMessage(@RequestBody MessageDto messageDto) {
-        return messageService.addMessage(messageDto);
+    public Message addMessage(@RequestBody MessageDtoPost messageDtoPost) {
+        return messageService.addMessage(messageDtoPost);
     }
 
-    @PutMapping("/{id}")
-    public Message updateMessage(@RequestBody Message message) {
-        return messageService.updateMessage(message);
+    @PostMapping("/{id}/update")
+    public Message updateMessage(@PathVariable String id) {
+        return messageService.updateStatus(id);
     }
 }

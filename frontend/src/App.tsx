@@ -13,6 +13,7 @@ import Home from "./components/home.tsx";
 import KontaktPage from "./components/kontakt-page.tsx";
 import {Message} from './types/Message.tsx';
 import Thanks from './components/thanks.tsx';
+import {MessageDto} from "./types/MessageDto.tsx";
 
 
 function App() {
@@ -29,9 +30,8 @@ function App() {
     const navigate = useNavigate()
 
     function editMessage(message: Message) {
-        axios.put(`/api/messages/${message.id}`, {...message, read: !message.read})
+        axios.post(`/api/messages/${message.id}/update`, {...message, read: !message.read})
             .then((response) => {
-                console.log(response)
                 setMessages(messages.map((item) => (item.id === message.id ? response.data : item)))
             })
     }
@@ -43,7 +43,7 @@ function App() {
                 navigate("/books/" + response.data.id)
             }) // after save goes to details
     }
-    const addMessage = (messageToSave: Message) => {
+    const addMessage = (messageToSave: MessageDto) => {
         axios.post("/api/messages", messageToSave)
             .then((response) => {
                 setMessages([...messages, response.data])
@@ -73,10 +73,9 @@ function App() {
     }
     const deleteMessage = (id: string) => {
         axios.delete(`/api/messages/${id}`)
-            .then(response => {
+            .then(() => {
                 setMessages([...messages.filter(message => id !== message.id)]);
                 navigate("/kontakt")
-                return console.log(response.data)
             })
     }
 
