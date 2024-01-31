@@ -24,21 +24,23 @@ public class BooksController {
         return bookService.getBooks();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping ("/{id}")
     public Book updateBook(@RequestBody Book book) {
         return bookService.updateBook(book);
     }
 
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable String id){return bookService.getById(id);}
+    public Book getBookById(@PathVariable String id) {
+        return bookService.getById(id);
+    }
 
     @DeleteMapping("/{id}")
-    public  Book deleteBookById(@PathVariable String id) {
+    public Book deleteBookById(@PathVariable String id) {
         return bookService.deleteBookById(id);
     }
 
     @PostMapping
-    public Book addBook(@RequestBody BookDto bookDto){
+    public Book addBook(@RequestBody BookDto bookDto) {
         return bookService.addBook(bookDto);
     }
 
