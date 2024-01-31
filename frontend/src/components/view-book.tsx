@@ -8,7 +8,7 @@ type ViewBookProps = {
     handleBookDelete: (id: string) => void
 }
 
-export default function ViewBook(props: ViewBookProps) {
+export default function ViewBook(props : ViewBookProps) {
 
     const [book, setBooks] = useState<Book>();
     const {id} = useParams();
@@ -31,7 +31,6 @@ export default function ViewBook(props: ViewBookProps) {
                         <StyledInfo>
                             <StyledTitle>{book?.title}</StyledTitle>
                             <StyledAuthor>{book?.author}</StyledAuthor>
-
                             <StyledG>{book?.genre}.</StyledG>
                             <StyledH>
                                 <StyledPubl><i> {book?.publisher}</i>,</StyledPubl>

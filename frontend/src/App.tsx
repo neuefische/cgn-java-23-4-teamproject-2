@@ -11,6 +11,8 @@ import NavBar from "./components/Navbar.tsx";
 import NoPage from "./components/NoPage.tsx";
 import Home from "./components/home.tsx";
 
+import {ViewFavoriteBooks} from "./components/choose-favorite.tsx";
+
 
 function App() {
 
@@ -21,12 +23,14 @@ function App() {
     }, [])
 
     const navigate = useNavigate()
+
     const addBook =(bookToSave : Book)=>{
          axios.post("/api/books", bookToSave)
              .then((response)=>{
                  setBooks([...books, response.data])
                  navigate("/books/"+ response.data.id)}) // after save goes to details
     }
+
     function uploadFile(file:File){
         const formData = new FormData();
         formData.append("file", file!)
@@ -34,7 +38,6 @@ function App() {
                 "Content-Type":"multipart/form-data",
             }
         })
-
 
     }
   const deleteBook = (id: string) => {
@@ -59,6 +62,9 @@ function App() {
             <Routes>
                 <Route index element={<Home/>}/>
                 <Route path="/list" element={<ViewAllBooks books={books}/>}/>
+
+                <Route path={"/favorites"} element={<ViewFavoriteBooks books={books}/>}/>
+
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
                 <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
                 <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>

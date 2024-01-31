@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 4rem;
+
 }
 
 .books .book {
@@ -18,4 +19,21 @@
     background-color: white;
     padding: 1.25rem;
 }
+
+.heartIcon{
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+}
+
+.heartIcon-active{
+    background-color: red;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+
+}
+
 
