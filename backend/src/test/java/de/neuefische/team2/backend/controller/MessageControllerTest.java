@@ -42,7 +42,7 @@ class MessageControllerTest {
                         "name":"Name",
                         "mail":"mail",
                         "message":"Text",
-                        "gelesen": false
+                        "read": false
                         }]
                         """))
                 .andReturn();
@@ -63,7 +63,7 @@ class MessageControllerTest {
                         "name":"Name",
                         "mail":"mail",
                         "message":"Text",
-                        "gelesen": false
+                        "read": false
                         }
                         """))
                 .andReturn();
@@ -81,7 +81,7 @@ class MessageControllerTest {
                                 "name":"Name",
                                 "mail":"mail",
                                 "message":"Text",
-                                "gelesen": false
+                                "read": false
                                 }
                                 """))
                 //THEN
@@ -91,7 +91,7 @@ class MessageControllerTest {
                         "name":"Name",
                         "mail":"mail",
                         "message":"Text",
-                        "gelesen": false
+                        "read": false
                         }
                         """))
                 .andExpect(jsonPath("$.id").isNotEmpty());
