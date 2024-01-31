@@ -8,11 +8,11 @@ type ViewAllBooksProps = {
     favorites:Book[]
 }
 
-export const ViewAllBooks: React.FC<ViewAllBooksProps> = ({books, onclickHeart, favorites}) => {
+export const ViewAllBooks: React.FC<ViewAllBooksProps> = ({books, onclickHeart,  favorites}) => {
 
     return (
         <div className="books">
-            {books.map(book => (<BookElement key={book.id} book={book}  onclickHeart={onclickHeart} isFavorite={favorites.find((favBook)=> book.id===favBook.id)!==undefined} />))}
+            {books.map(book => (<BookElement key={book.id} book={book} favorites={favorites}  onclickHeart={onclickHeart} isFavorite={favorites.find((favBook)=> book.id===favBook.id)!==undefined} />))}
         </div>
     );
 

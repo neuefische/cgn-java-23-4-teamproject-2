@@ -8,10 +8,10 @@ type BookElementProps = {
     book: Book
     onclickHeart: (book:Book)=>void
     isFavorite:boolean
-    favorites:Book[]
+
 }
 
-export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
+export const FavoriteBookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
 
     const navitage= useNavigate();
 
@@ -29,7 +29,7 @@ export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isF
 
             <div onClick={onboxclick} className="book">
 
-                <div>{book.title}</div>
+                 <div> {book.title}</div>
 
                 <div className={isFavorite?"heartIcon heartIcon-active":"heartIcon"} onClick={onheartClick}>
                     <CiHeart/>
