@@ -105,10 +105,10 @@ class BookServiceTest {
 
                 ));
 
-        BookService toDoService = new BookService(booksRepo,idService);
+        BookService bookService = new BookService(booksRepo,idService);
 
         //WHEN
-        Book actual = toDoService.deleteBookById("1");
+        Book actual = bookService.deleteBookById("1");
 
         //THEN
         assertEquals(
