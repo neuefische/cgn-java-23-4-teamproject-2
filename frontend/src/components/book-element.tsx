@@ -1,58 +1,40 @@
 import {Book} from "../types/Book.ts";
-import React, {useState} from "react";
+import React from "react";
 import {useNavigate} from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 
 
 type BookElementProps = {
     book: Book
+    onclickHeart: (book:Book)=>void
+    isFavorite:boolean
 }
 
-export const BookElement: React.FC<BookElementProps> = ({book}) => {
+export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
 
     const navitage= useNavigate();
-
-    const [favorite, setFavorite]=useState<Book>()
-
-    const [books, setBooks] = useState<Book[]>([])
-
-    const [changeColor, setChangeColor] =useState(false)
-
-    const onclickHeart=(event: React.MouseEvent <HTMLDivElement, MouseEvent>)=>{
-
-         event.stopPropagation()
-
-        // console.log("Heart")
-
-         setChangeColor(!changeColor)
-
-         setFavorite(book);
-
-         setBooks(...books, Array.of(favorite));
-    }
-
 
     const onboxclick=()=>{
         navitage(`/books/${book.id}`)
     }
 
+    const onheartClick=(event :React.MouseEvent <HTMLDivElement, MouseEvent>)=>{
+        event.stopPropagation()
+        onclickHeart(book)
+    }
 
     return (
         <div>
-
-            {/*   <Link to={`/books/${book.id}`}>*/}
 
             <div onClick={onboxclick} className="book">
 
                 <div>{book.title}</div>
 
-                <div className={changeColor?"heartIcon heartIcon-active":"heartIcon"} onClick={onclickHeart}>
+                <div className={isFavorite?"heartIcon heartIcon-active":"heartIcon"} onClick={onheartClick}>
                     <CiHeart/>
                 </div>
 
             </div>
-
-            {/*</Link>*/}
 
         </div>
 

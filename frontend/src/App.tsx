@@ -57,13 +57,27 @@ function App() {
         )
     }
 
+    const [favorites, setFavorites]=useState<Book[]>([])
+
+
+    const onclickHeart=(book : Book)=>{
+
+        console.log("Heart")
+
+        if (favorites.find(value => book.id===value.id)!==undefined){
+            setFavorites( favorites.filter(value => book.id !== value.id))
+
+        }else {
+            setFavorites([...favorites, book]);
+        }
+    }
+
     return (
         <><NavBar/>
             <Routes>
                 <Route index element={<Home/>}/>
-                <Route path="/list" element={<ViewAllBooks books={books}/>}/>
-
-                <Route path={"/favorites"} element={<ViewFavoriteBooks books={books}/>}/>
+                <Route path="/list" element={<ViewAllBooks books={books} favorites={favorites}  onclickHeart = {onclickHeart} />}/>
+                <Route path={"/favorites"} element={<ViewFavoriteBooks books={books} favorites={favorites}  onclickHeart = {onclickHeart} />}/>
 
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
                 <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>

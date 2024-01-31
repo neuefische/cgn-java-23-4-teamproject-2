@@ -4,13 +4,15 @@ import React from "react";
 
 type ViewAllBooksProps = {
     books: Book[]
+    onclickHeart: (book:Book)=>void
+    favorites:Book[]
 }
 
-export const ViewAllBooks: React.FC<ViewAllBooksProps> = ({books}) => {
+export const ViewAllBooks: React.FC<ViewAllBooksProps> = ({books, onclickHeart, favorites}) => {
 
     return (
         <div className="books">
-            {books.map(book => (<BookElement key={book.id} book={book}/>))}
+            {books.map(book => (<BookElement key={book.id} book={book}  onclickHeart={onclickHeart} isFavorite={favorites.find((favBook)=> book.id===favBook.id)!==undefined} />))}
         </div>
     );
 
