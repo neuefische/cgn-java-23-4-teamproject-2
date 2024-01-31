@@ -30,23 +30,19 @@ const [user, setUser] = useState("")
                 {user !== "anonymousUser" && user !== undefined ? <button onClick={login} title={"LOGOUT"}>{user}</button>:
                 <button onClick={login}>Login</button>}
                 <NavContainer>
-
+                    <Heading>Home Library</Heading>
                     <FlexContainer>
-                        <NavLinksContainer>
-                            <NavLinkAdd to="/books/add"> + New Book</NavLinkAdd>
-                            <NavLinks to="/">Home</NavLinks>
-                            <NavLinks to="/list">List of Books</NavLinks>
-                            <NavLinks to="/favorites">Favorites</NavLinks>
-                            <NavLinks to="/kontakt">Kontakt</NavLinks>
-                        </NavLinksContainer>
+
+                        <NavLinkAdd to="/books/add"> + New Book</NavLinkAdd>
+                        <NavLinks to="/">Home</NavLinks>
+                        <NavLinks to="/list">List of Books</NavLinks>
+                        <NavLinks to="/favorites">Favorites</NavLinks>
+                        <NavLinks to="/kontakt">Kontakt</NavLinks>
+
                     </FlexContainer>
                 </NavContainer>
             </StyledNav>
-            <StyledHeader>
-                <HeaderContainer>
-                    <Heading>Home Library</Heading>
-                </HeaderContainer>
-            </StyledHeader>
+
         </div>
     )
 }
@@ -54,63 +50,55 @@ const [user, setUser] = useState("")
 
 const StyledNav = styled.nav`
     background-color: #4b5563;
+    height: auto;
 `;
 
 const NavContainer = styled.div`
     max-width: 75rem;
     padding-left: 1rem;
-    padding-right: 2rem;
-    margin: 0 auto;
+    padding-right: 0.5rem;
+    margin: 0;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
 `;
 
 const FlexContainer = styled.div`
     display: flex;
-    height: 4rem;
+    flex-wrap: wrap;
+    padding: 0.75rem 0 0.75rem 0;
+    max-width: 80vw;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 `;
 
-const NavLinksContainer = styled.div`
-    
-`;
 
 const NavLinks = styled(NavLink)`
     color: #ffffff;
     background-color: #4b5563;
-    width: 10vw;
+    width: auto;
+    height: auto;
+    text-decoration: none;
     border-radius: 0.375rem;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
+    padding: 1vw;
+    font-size: 1.5vw;
     font-weight: 500;
-    margin-right: 1rem;
-`;
-
-const StyledHeader = styled.header`
-    background-color: #ffffff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-`;
-
-const HeaderContainer = styled.div`
-    max-width: 75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin: 0 auto;
+    margin-right: 0.3vw;
 `;
 
 const Heading = styled.h1`
-    font-size: 3vw;
-    font-weight: 700;
-    line-height: 2.25rem;
-    color: #1a202c;
+    font-size: 5vw;
+    color: #FFF;
+    font-family: "Party LET";
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
 `;
 const NavLinkAdd = styled(NavLinks)`
     color: #ffffff;
     background-color: darkmagenta;
     border-radius: 0.975rem;
     padding: 0.55rem 1rem;
-    font-size: 0.875rem;
+    font-size: 1.7vw;
     font-weight: 500;
     margin-right: 1rem;
 `;

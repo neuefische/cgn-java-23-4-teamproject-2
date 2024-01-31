@@ -64,6 +64,7 @@ const StyledDivInfoImg = styled.div`
     justify-content: space-around;
 `;
 const StyledDiv = styled.div`
+    margin: 2vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -74,10 +75,13 @@ const StyledDivInfo = styled.div`
     justify-content: space-around;
 `;
 const StyledTitle = styled.h1`
+    font-size: 4vw;
     margin: 1vw;
 `;
 const StyledAuthor = styled.h2`
-    margin: 1vw;
+    margin: 2vw 0 0 1vw;
+    font-size: 3vw;
+    font-style: italic;
 `;
 const StyledInfo = styled.div`
     margin: 5vw 1vw 0 1vw;
@@ -85,8 +89,9 @@ const StyledInfo = styled.div`
 const StyledImgBox = styled.div`
     margin: 1vw;
 `;
-const StyledG = styled.p`
+const StyledG = styled.h2`
     margin: 1vw;
+    font-size: 2vw;
 `;
 
 const StyledYCP = styled.p`
