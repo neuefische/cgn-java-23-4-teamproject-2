@@ -14,9 +14,10 @@ export const ViewAllBooks: React.FC<ViewAllBooksProps> = ({books, onclickHeart, 
     return (
         <StyledDiv>
             <h2>Meine Büche</h2>
-        <div className="books">
+          <div className="books">
             {books.map(book => (<BookElement key={book.id} book={book} favorites={favorites}  onclickHeart={onclickHeart} isFavorite={favorites.find((favBook)=> book.id===favBook.id)!==undefined} />))}
-        </div></StyledDiv>
+          </div>
+        </StyledDiv>
     );
 
 }

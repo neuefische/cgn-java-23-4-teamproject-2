@@ -1,9 +1,8 @@
 import {Book} from "../types/Book.ts";
 import React from "react";
-import {useNavigate} from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 type BookElementProps = {
@@ -15,9 +14,11 @@ type BookElementProps = {
 
 export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
 
-    const navitage= useNavigate();
 
-    const onboxclick=()=>{
+
+     const navitage= useNavigate();
+
+     const onboxclick=()=>{
         navitage(`/books/${book.id}`)
     }
 
@@ -28,7 +29,7 @@ export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isF
 
     return (
 
-        /*
+
          <div>
 
             <div onClick={onboxclick} className="book">
@@ -42,18 +43,22 @@ export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isF
             </div>
 
         </div>
-       */
 
 
 
-        <StyledLink to={`/books/${book.id}`}>
+/*        <StyledLink to={`/books/${book.id}`}>
 
             <StyledDiv>
                 <StyledH>{book.title}</StyledH>
                 <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
+
+                <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
+                    <CiHeart/>
+                </div>
+
             </StyledDiv>
 
-        </StyledLink>
+        </StyledLink>*/
     );
 
 }
