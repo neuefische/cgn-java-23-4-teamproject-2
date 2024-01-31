@@ -13,7 +13,7 @@ export const BookElement: React.FC<BookElementProps> = ({book}) => {
     return (
         <StyledLink to={`/books/${book.id}`}>
 
-            <StyledDiv /*className="book"*/>
+            <StyledDiv>
                 <StyledH>{book.title}</StyledH>
                 <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
             </StyledDiv>

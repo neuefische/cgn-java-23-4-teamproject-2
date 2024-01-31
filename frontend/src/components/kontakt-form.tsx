@@ -59,7 +59,7 @@ export default function KontaktForm(props: FormProps) {
     )
 }
 const StyledTextarea =styled.textarea`
-height: 20vw;
+    height: 20vw;
 `;
 const StyledButton =styled.button`
     width: 30%;

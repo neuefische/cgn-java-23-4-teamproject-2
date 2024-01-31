@@ -16,7 +16,9 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook, onUpload}) =
     const book: Book | undefined = books.find(book => book.id === id);
 
     const [title, setTitle] = useState<string>(book?.title || "")
+
     const [author, setAuthor] = useState<string>(book?.author || "")
+
     const [img, setImg] = useState<string>(book?.img || "")
 
     const [genre, setGenre] = useState<string>(book?.genre || "")
@@ -32,6 +34,7 @@ export const EditBook: React.FC<EditBookProps> = ({books, editBook, onUpload}) =
     const [description, setDescription] = useState<string>(book?.description || "")
 
     const [views, setViews] = useState<number>(book?.views || 0)
+
     const [file, setFile] = useState<File | null>(null);
 
     function handleChangeFile(event: ChangeEvent<HTMLInputElement>) {

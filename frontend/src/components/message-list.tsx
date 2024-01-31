@@ -2,13 +2,13 @@ import {Message} from "../types/Message.tsx";
 import MessageListItem from "./message-list-item.tsx";
 import styled from "styled-components";
 
-type MessagListProps = {
+type MessageListProps = {
     messages: Message[],
     onDelete: (id: string) => void,
     onChangeStatus:(message:Message)=>void
 
 }
-export default function MessageList(props: MessagListProps) {
+export default function MessageList(props: MessageListProps) {
 
 function handleDelete(id:string){
     props.onDelete(id)

@@ -64,6 +64,7 @@ const StyledDivInfoImg = styled.div`
     justify-content: space-around;
 `;
 const StyledDiv = styled.div`
+    margin: 2vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

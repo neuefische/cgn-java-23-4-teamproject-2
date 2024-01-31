@@ -10,20 +10,16 @@ export default function NavBar() {
                     <Heading>Home Library</Heading>
                     <FlexContainer>
 
-                            <NavLinkAdd to="/books/add"> + New Book</NavLinkAdd>
-                            <NavLinks to="/">Home</NavLinks>
-                            <NavLinks to="/list">List of Books</NavLinks>
-                            <NavLinks to="/favorites">Favorites</NavLinks>
-                            <NavLinks to="/kontakt">Kontakt</NavLinks>
+                        <NavLinkAdd to="/books/add"> + New Book</NavLinkAdd>
+                        <NavLinks to="/">Home</NavLinks>
+                        <NavLinks to="/list">List of Books</NavLinks>
+                        <NavLinks to="/favorites">Favorites</NavLinks>
+                        <NavLinks to="/kontakt">Kontakt</NavLinks>
 
                     </FlexContainer>
                 </NavContainer>
             </StyledNav>
-            {/*<StyledHeader>
-                <HeaderContainer>
-                    <Heading>Home Library</Heading>
-                </HeaderContainer>
-            </StyledHeader>*/}
+
         </div>
     )
 }
@@ -66,18 +62,6 @@ const NavLinks = styled(NavLink)`
     margin-right: 0.3vw;
 `;
 
-/*const StyledHeader = styled.header`
-    background-color: #ffffff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
-`;
-
-const HeaderContainer = styled.div`
-    max-width: 75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin: 0 auto;
-`;
-*/
 const Heading = styled.h1`
     font-size: 5vw;
     color: #FFF;
