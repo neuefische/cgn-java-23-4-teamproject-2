@@ -22,9 +22,11 @@ function App() {
 
     const [books, setBooks] = useState<Book[]>([])
     const [messages, setMessages] = useState<Message[]>([])
+
     useEffect(() => {
         axios.get("/api/books").then(response => setBooks(response.data))
     }, [])
+
     useEffect(() => {
         axios.get("/api/messages").then(response => setMessages(response.data))
     }, [])
@@ -46,7 +48,7 @@ function App() {
             }) // after save goes to details
     }
 
-const addMessage = (messageToSave: MessageDto) => {
+    const addMessage = (messageToSave: MessageDto) => {
         axios.post("/api/messages", messageToSave)
             .then((response) => {
                 setMessages([...messages, response.data])
@@ -73,6 +75,7 @@ const addMessage = (messageToSave: MessageDto) => {
                 return console.log(response.data)
             })
     }
+
     const deleteMessage = (id: string) => {
         axios.delete(`/api/messages/${id}`)
             .then(() => {
@@ -96,8 +99,9 @@ const addMessage = (messageToSave: MessageDto) => {
 
         console.log("Heart")
 
-        if (favorites.find(value => book.id===value.id)!==undefined){
-            setFavorites(favorites.filter(value => book.id !== value.id))
+        if (favorites.find(favBook => book.id===favBook.id) !== undefined){
+
+            setFavorites(favorites.filter(favBook => book.id !== favBook.id))
 
         }else {
             setFavorites([...favorites, book]);

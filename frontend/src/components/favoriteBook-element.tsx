@@ -40,10 +40,11 @@ export const FavoriteBookElement: React.FC<BookElementProps> = ({book, onclickHe
         </div>
 
     <div>*/
-
+                      
         <div onClick={onboxclick} className="book">
 
             <StyledDiv>
+
                 <StyledH>{book.title}</StyledH>
 
                 <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
@@ -56,8 +57,8 @@ export const FavoriteBookElement: React.FC<BookElementProps> = ({book, onclickHe
 
         </div>
 
-)
-    ;
+    )
+        ;
 
 }
 const StyledH = styled.h2`
