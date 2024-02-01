@@ -50,7 +50,7 @@ export const FavoriteBookElement: React.FC<BookElementProps> = ({favoriteBook, o
 
                 <StyledImg src={favoriteBook.book?.img} alt={`${favoriteBook.book?.title} book cover`}/>
 
-                <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
+                <div className={isFavorite ? "heartIcon-active" : "heartIcon"} onClick={onheartClick}>
                     <CiHeart/>
                 </div>
 

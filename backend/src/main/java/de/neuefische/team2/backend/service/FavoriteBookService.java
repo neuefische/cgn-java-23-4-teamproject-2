@@ -32,7 +32,7 @@ public class FavoriteBookService {
 
     public FavoriteBook deleteBookById(String id) {
 
-        Optional<FavoriteBook> byId = booksRepo.findById(id);
+        Optional<FavoriteBook> byId = booksRepo.findByBookId(id);
         if (byId.isPresent()){
           booksRepo.delete(byId.get());
           return byId.get();
@@ -44,10 +44,27 @@ public class FavoriteBookService {
 
         String id = idService.newId();
         FavoriteBook book = new FavoriteBook(id, bookDto);
-        /*booksRepo.findById(bookDto.id());*/
-        return booksRepo.save(book);
-    }
+        Optional<FavoriteBook> byBookId = booksRepo.findByBookId(bookDto.id());
+        if (byBookId.isEmpty()){
+            return booksRepo.save(book);
+        }
+        return null;
 
+/*        boolean there=false;
+        String id = idService.newId();
+        FavoriteBook book = new FavoriteBook(id, bookDto);
+        for (FavoriteBook favoriteBook : booksRepo.findAll()) {
+            if (favoriteBook.book().id().equals(bookDto.id())) {
+                there = true;
+                break;
+            }
+        }
+        if (!there){
+            return booksRepo.save(book);
+        }
+        return null;*/
+
+    }
 
 
 /*    public FavoriteBook updateBook(FavoriteBook book) {
