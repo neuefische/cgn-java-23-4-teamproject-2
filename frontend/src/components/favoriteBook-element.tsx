@@ -3,25 +3,26 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
 import styled from "styled-components";
+import {FavoriteBook} from "../types/FavoriteBook.ts";
 
 
 type BookElementProps = {
-    book: Book
+    favoriteBook: FavoriteBook
     onclickHeart: (book:Book)=>void
     isFavorite:boolean
 }
 
-export const FavoriteBookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
+export const FavoriteBookElement: React.FC<BookElementProps> = ({favoriteBook, onclickHeart, isFavorite}) => {
 
     const navitage= useNavigate();
 
     const onboxclick=()=>{
-        navitage(`/books/${book.id}`)
+        navitage(`/books/${favoriteBook.book.id}`)
     }
 
     const onheartClick=(event :React.MouseEvent <HTMLDivElement, MouseEvent>)=>{
         event.stopPropagation()
-        onclickHeart(book)
+        onclickHeart(favoriteBook.book)
     }
 
     return (
@@ -45,9 +46,9 @@ export const FavoriteBookElement: React.FC<BookElementProps> = ({book, onclickHe
 
             <StyledDiv>
 
-                <StyledH>{book.title}</StyledH>
+                <StyledH>{favoriteBook.book.title}</StyledH>
 
-                <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
+                <StyledImg src={favoriteBook.book?.img} alt={`${favoriteBook.book?.title} book cover`}/>
 
                 <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
                     <CiHeart/>

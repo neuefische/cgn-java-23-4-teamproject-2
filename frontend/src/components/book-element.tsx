@@ -4,12 +4,13 @@ import { CiHeart } from "react-icons/ci";
 
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {FavoriteBook} from "../types/FavoriteBook.ts";
 
 type BookElementProps = {
     book: Book
     onclickHeart: (book:Book)=>void
     isFavorite:boolean
-    favorites:Book[]
+    favorites:FavoriteBook[]
 }
 
 export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {

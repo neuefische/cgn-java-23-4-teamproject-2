@@ -30,7 +30,7 @@ public class FavoriteBooksController {
     }
 
     @PostMapping
-    public FavoriteBook addBook(@RequestBody FavoriteBookDto bookDto) {
+    public FavoriteBook addBook(@RequestBody Book bookDto) {
         return bookService.addBook(bookDto);
     }
 

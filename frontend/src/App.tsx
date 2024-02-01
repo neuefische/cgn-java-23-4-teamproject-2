@@ -16,13 +16,15 @@ import Thanks from './components/thanks.tsx';
 import {MessageDto} from "./types/MessageDto.tsx";
 
 import {ViewFavoriteBooks} from "./components/choose-favorite.tsx";
+import {FavoriteBook} from "./types/FavoriteBook.ts";
 
 
 function App() {
 
     const [books, setBooks] = useState<Book[]>([])
     const [messages, setMessages] = useState<Message[]>([])
-    const [favorites, setFavorites]=useState<Book[]>([])
+
+    const [favorites, setFavorites]=useState<FavoriteBook[]>([])
 
     useEffect(() => {
         axios.get("/api/books").then(response => setBooks(response.data))
@@ -103,17 +105,15 @@ function App() {
 
     const addFavoriteBook = (bookToSave: Book) => {
         axios.post("/api/favoriteBooks", bookToSave)
-            .then((response) => {
-                setFavorites([...favorites, response.data])
-                navigate("/books/" + response.data.id)
-            }) // after save goes to details
+             .then(value => {
+
+                 return setFavorites([...favorites, value.data]);})
     }
 
     const deleteFavoriteBook = (id: string) => {
         axios.delete(`/api/favoriteBooks/${id}`)
             .then(response => {
                 setFavorites([...favorites.filter(book => id !== book.id)]);
-                navigate("/list")
                 return console.log(response.data)
             })
     }
@@ -123,15 +123,14 @@ function App() {
 
         console.log("Heart")
 
-        if (favorites.find(favBook => book.id===favBook.id) !== undefined){
+        if (favorites.find(favBook => book.id===favBook.book.id) !== undefined){
 
-            setFavorites(favorites.filter(favBook => book.id !== favBook.id))
-            deleteFavoriteBook(book.id);
+           setFavorites(favorites.filter(favBook => book.id !== favBook.book.id))
+           deleteFavoriteBook(book.id);
 
         }else {
-            setFavorites([...favorites, book]);
-            addFavoriteBook(book);
 
+            addFavoriteBook(book);
         }
     }
 
