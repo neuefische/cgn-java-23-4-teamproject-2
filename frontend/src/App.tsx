@@ -14,18 +14,46 @@ import KontaktPage from "./components/kontakt-page.tsx";
 import {Message} from './types/Message.tsx';
 import Thanks from './components/thanks.tsx';
 import {MessageDto} from "./types/MessageDto.tsx";
+import ProtectedRoutes from "./components/ProtectedRouts.tsx";
+import Login from "./components/login.tsx";
+
 
 
 function App() {
 
     const [books, setBooks] = useState<Book[]>([])
     const [messages, setMessages] = useState<Message[]>([])
+    const [user, setUser] = useState("")
+
+
     useEffect(() => {
         axios.get("/api/books").then(response => setBooks(response.data))
     }, [])
     useEffect(() => {
         axios.get("/api/messages").then(response => setMessages(response.data))
     }, [])
+
+
+    const login = () =>{
+        const host = window.location.host === 'localhost:5173' ? 'http://localhost:8080' : window.location.origin
+        window.open(host + '/oauth2/authorization/github', '_self')
+
+    }
+
+    const logout = () => {
+        axios.post("/api/logout").then(()=>loadUser())
+    }
+    useEffect(() => {
+        loadUser()
+    }, []);
+    function loadUser () {
+        axios.get("/api/users/me")
+            .then((response) => {
+                console.log(response)
+                setUser(response.data)
+            })
+    }
+
 
     const navigate = useNavigate()
 
@@ -89,19 +117,22 @@ function App() {
     }
 
     return (
-        <><NavBar/>
+        <><NavBar log={login} userSet={user} userLoad={loadUser} outlog={logout}/>
             <Routes>
                 <Route index element={<Home/>}/>
+                <Route element={<ProtectedRoutes user={user} />}>
                 <Route path="/list" element={<ViewAllBooks books={books}/>}/>
-                <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
-                <Route path="/kontakt" element={<KontaktPage messages={messages} saveMessage={addMessage}
-                                                             handleMessageDelete={deleteMessage}
-                                                             handleEdit={editMessage}/>}/>
-                <Route path="/books/:id/edit"
-                       element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
-                <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
-                <Route path={"/*"} element={<NoPage/>}/>
+                    <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
+                    <Route path="/kontakt" element={<KontaktPage messages={messages} saveMessage={addMessage}
+                                                                 handleMessageDelete={deleteMessage}
+                                                                 handleEdit={editMessage}/>}/>
+                    <Route path="/books/:id/edit"
+                           element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
+                    <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
+                </Route>
+                <Route path={"/login"} element={<Login log={login}/>}/>
                 <Route path={"/thanks"} element={<Thanks/>}/>
+                <Route path={"/*"} element={<NoPage/>}/>
             </Routes>
         </>
     )

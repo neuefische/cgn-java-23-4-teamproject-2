@@ -1,34 +1,21 @@
 import styled from 'styled-components';
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {useEffect, useState} from "react";
 
-export default function NavBar() {
-const [user, setUser] = useState("")
-    const login = () =>{
-        const host = window.location.host === 'localhost:5173' ? 'http://localhost:8080' : window.location.origin
-        window.open(host + '/oauth2/authorization/github', '_self')
-
+type PropsNavBar = {
+    log: ()=>void,
+    userSet:string,
+    userLoad:()=> void,
+    outlog:()=>void,
 }
-    useEffect(() => {
-        loadUser()
-    }, []);
-    function loadUser () {
-        axios.get("/api/users/me")
-            .then((response) => {
-                console.log(response)
-                setUser(response.data)
-            })
-    }
-
+export default function NavBar(props:PropsNavBar) {
 
 
     return (
 
         <div>
             <StyledNav>
-                {user !== "anonymousUser" && user !== undefined ? <button onClick={login} title={"LOGOUT"}>{user}</button>:
-                <button onClick={login}>Login</button>}
+                {props.userSet !== "anonymousUser" && props.userSet !== undefined ? <button onClick={props.outlog} title={"LOGOUT"}>{props.userSet}</button>:
+                <button onClick={props.log}>Login</button>}
                 <NavContainer>
                     <Heading>Home Library</Heading>
                     <FlexContainer>
