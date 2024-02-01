@@ -41,9 +41,9 @@ const StyledNav = styled.nav`
 `;
 
 const NavContainer = styled.div`
-    max-width: 75rem;
+    max-width: 100vw;
     padding-left: 1rem;
-    padding-right: 0.5rem;
+    padding-right: 0.5vw;
     margin: 0;
     display: flex;
     justify-content: space-between;

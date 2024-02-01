@@ -14,7 +14,8 @@ export const ViewAllBooks: React.FC<ViewAllBooksProps> = ({books}) => {
             <h2>Meine Büche</h2>
         <div className="books">
             {books.map(book => (<BookElement key={book.id} book={book}/>))}
-        </div></StyledDiv>
+        </div>
+        </StyledDiv>
     );
 
 }
