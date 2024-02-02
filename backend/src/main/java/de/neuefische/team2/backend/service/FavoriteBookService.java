@@ -50,37 +50,5 @@ public class FavoriteBookService {
         }
         return null;
 
-/*        boolean there=false;
-        String id = idService.newId();
-        FavoriteBook book = new FavoriteBook(id, bookDto);
-        for (FavoriteBook favoriteBook : booksRepo.findAll()) {
-            if (favoriteBook.book().id().equals(bookDto.id())) {
-                there = true;
-                break;
-            }
-        }
-        if (!there){
-            return booksRepo.save(book);
-        }
-        return null;*/
-
     }
-
-
-/*    public FavoriteBook updateBook(FavoriteBook book) {
-        return booksRepo.save(book);
-    }
-
-    public FavoriteBook getById(String id){
-        Optional<FavoriteBook> byId = booksRepo.findById(id);
-        if (byId.isPresent()){
-            Integer views = byId.get().views();
-            views=views+1;
-            FavoriteBook book = byId.get().withViews(views);
-            booksRepo.save(book);
-            return book;
-        }
-        throw(new ResponseStatusException(HttpStatus.NOT_FOUND, "No book with such id!"));
-    }*/
-
 }
