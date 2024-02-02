@@ -23,7 +23,8 @@ export const BookElement: React.FC<BookElementProps> = ({book}) => {
 }
 const StyledH = styled.h2`
     margin: 1vw 0 0 0;
-    font-size: 2vw;
+    max-height: 10vh;
+    max-font-size: 2vw;
     font-style: normal`;
 
 const StyledDiv = styled.div`
