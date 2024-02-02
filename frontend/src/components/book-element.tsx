@@ -9,7 +9,6 @@ type BookElementProps = {
     book: Book
     onclickHeart: (book:Book)=>void
     isFavorite:boolean
- /*   favorites:FavoriteBook[]*/
 }
 
 export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
@@ -47,37 +46,6 @@ export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isF
             </div>
 
         </div>
-
-        /*         <div>
-
-                    <div onClick={onboxclick} className="book">
-
-                        <div>{book.title}</div>
-
-                        <div className={isFavorite?"heartIcon heartIcon-active":"heartIcon"} onClick={onheartClick}>
-                            <CiHeart/>
-                        </div>
-
-                    </div>
-
-                </div>*/
-
-
-        /*       <StyledLink to={`/books/${book.id}`}>
-
-                    <StyledDiv>
-                        <StyledH>{book.title}</StyledH>
-
-                        <StyledImg src={book?.img} alt={`${book?.title} book cover`}/>
-
-                        <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
-                            <CiHeart/>
-                        </div>
-
-                    </StyledDiv>
-
-                </StyledLink>*/
-
 
     );
 

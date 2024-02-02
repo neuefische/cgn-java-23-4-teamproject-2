@@ -26,22 +26,7 @@ export const FavoriteBookElement: React.FC<BookElementProps> = ({favoriteBook, o
     }
 
     return (
-/*        <div>
 
-            <div onClick={onboxclick} className="book">
-
-                <div> {book.title}</div>
-
-                <div className={isFavorite ? "heartIcon heartIcon-active" : "heartIcon"} onClick={onheartClick}>
-                    <CiHeart/>
-                </div>
-
-            </div>
-
-        </div>
-
-    <div>*/
-                      
         <div onClick={onboxclick} className="book">
 
             <StyledDiv>
