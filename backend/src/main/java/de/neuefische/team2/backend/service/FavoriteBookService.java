@@ -40,11 +40,11 @@ public class FavoriteBookService {
         throw (new NoSuchElementException());
     }
 
-    public FavoriteBook addBook(Book bookDto){
+    public FavoriteBook addBook(Book bookToSave){
 
         String id = idService.newId();
-        FavoriteBook book = new FavoriteBook(id, bookDto);
-        Optional<FavoriteBook> byBookId = booksRepo.findByBookId(bookDto.id());
+        FavoriteBook book = new FavoriteBook(id, bookToSave);
+        Optional<FavoriteBook> byBookId = booksRepo.findByBookId(bookToSave.id());
         if (byBookId.isEmpty()){
             return booksRepo.save(book);
         }

@@ -34,16 +34,4 @@ public class FavoriteBooksController {
         return bookService.addBook(bookDto);
     }
 
-
-/*    @PutMapping ("/{id}")
-    public FavoriteBook updateBook(@RequestBody FavoriteBook book) {
-        return bookService.updateBook(book);
-    }
-
-    @GetMapping("/{id}")
-    public FavoriteBook getBookById(@PathVariable String id) {
-        return bookService.getById(id);
-    }*/
-
-
 }
