@@ -10,7 +10,7 @@ import java.util.Map;
 public record User(
         @Id
         String id,
-        String mail,
+        String name,
         @With
         List<String> favorites
 ) {

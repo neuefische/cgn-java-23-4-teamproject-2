@@ -4,7 +4,9 @@ package de.neuefische.team2.backend.service;
 import de.neuefische.team2.backend.models.User;
 
 import de.neuefische.team2.backend.repos.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,18 +16,16 @@ import java.util.Optional;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepo userRepo;
+    private final IdService idService;
 
 
-    public UserService(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
-
-    public User getUserById(String id) {
+    public String getUserById(String id) {
         Optional<User> byId = userRepo.findById(id);
         if (byId.isPresent()) {
-            return new User(byId.get().id(), byId.get().mail(), byId.get().favorites());
+            return byId.get().name();
         }
         throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No user with such id!"));
     }
@@ -47,4 +47,5 @@ public class UserService {
         }
         throw (new ResponseStatusException(HttpStatus.NOT_FOUND, "No user with such id!"));
     }
+
 }
