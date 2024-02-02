@@ -1,12 +1,9 @@
 package de.neuefische.team2.backend.security;
 
 import de.neuefische.team2.backend.models.User;
-import de.neuefische.team2.backend.repos.UserRepo;
 import de.neuefische.team2.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,10 +16,10 @@ public class UserController {
     @GetMapping("/me")
     public String getMe() {
 
-        if("anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName())){
+        if ("anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
             return "anonymousUser";
         }
-      return userService.getUserById(SecurityContextHolder.getContext().getAuthentication().getName());
+        return userService.getUserById(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
 

@@ -21,8 +21,8 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-@Value("${app.env}")
-private String environment;
+    @Value("${app.env}")
+    private String environment;
 
     private final UserRepo userRepo;
 
@@ -35,30 +35,31 @@ private String environment;
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                        .authorizeHttpRequests(a-> a
-                                .requestMatchers(HttpMethod.POST,"/api/books/add").authenticated()
-                                .requestMatchers(HttpMethod.POST,"/api/messages").authenticated()
-                                .requestMatchers(HttpMethod.PUT,"/api/books/edit").authenticated()
-                                .requestMatchers(HttpMethod.PUT,"/api/messages/:id").authenticated()
-                                .anyRequest().permitAll()
-                        )
+                .authorizeHttpRequests(a -> a
+                        .requestMatchers(HttpMethod.POST, "/api/books/add").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/messages").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/books/edit").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/messages/:id").authenticated()
+                        .anyRequest().permitAll()
+                )
                 .exceptionHandling(e -> e
-                .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
+                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .oauth2Login(o -> {
                     try {
                         o.init(http);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                    if(environment.equals("dev")){
-                    o.defaultSuccessUrl("http://localhost:5173", true);}
-                    else
-                    {o.defaultSuccessUrl("https://home-library-xpy7.onrender.com", true);}
+                    if (environment.equals("dev")) {
+                        o.defaultSuccessUrl("http://localhost:5173", true);
+                    } else {
+                        o.defaultSuccessUrl("https://home-library-xpy7.onrender.com", true);
+                    }
                 })
-                .logout(l-> l
-                                .logoutUrl("/api/logout")
+                .logout(l -> l
+                        .logoutUrl("/api/logout")
                         .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)));
-                return http.build();
+        return http.build();
     }
 
     @Bean

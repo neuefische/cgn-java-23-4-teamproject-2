@@ -25,24 +25,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
-@Autowired
+    @Autowired
     MockMvc mockMvc;
     @Autowired
     private UserRepo userRepo;
 
     @Test
-    void getCurrentUserTest_whenUserWithoutLogin() throws Exception{
+    void getCurrentUserTest_whenUserWithoutLogin() throws Exception {
         mockMvc.perform(get("/api/users/me"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("anonymousUser"));
     }
+
     @Test
-    void getCurrentUserTest_whenUserLogin() throws Exception{
-        userRepo.save(new User("user","Name",new ArrayList<>(List.of("1", "2"))));
+    void getCurrentUserTest_whenUserLogin() throws Exception {
+        userRepo.save(new User("user", "Name", new ArrayList<>(List.of("1", "2"))));
         mockMvc.perform(get("/api/users/me")
-                .with(oidcLogin()
-                        .userInfoToken(token ->
-                                token.claim("id", "user").claim("login", "Name"))))
+                        .with(oidcLogin()
+                                .userInfoToken(token ->
+                                        token.claim("id", "user").claim("login", "Name"))))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Name"));
     }
@@ -51,9 +52,9 @@ class UserControllerTest {
     @Test
     void updateFavorites_shouldReturnUser_whenFavoritesUpdated() throws Exception {
         //GIVEN
-        String bookId ="3";
+        String bookId = "3";
         String gitHubId = "user";
-        userRepo.save(new User("user","Name",new ArrayList<>(List.of("1", "2"))));
+        userRepo.save(new User("user", "Name", new ArrayList<>(List.of("1", "2"))));
 
         //WHEN
         mockMvc.perform(MockMvcRequestBuilders.post("/api/users/me")

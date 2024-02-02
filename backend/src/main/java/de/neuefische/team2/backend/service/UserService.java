@@ -2,11 +2,9 @@ package de.neuefische.team2.backend.service;
 
 
 import de.neuefische.team2.backend.models.User;
-
 import de.neuefische.team2.backend.repos.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 

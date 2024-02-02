@@ -14,7 +14,7 @@ public record User(
         @With
         List<String> favorites
 ) {
-        public User(Map<String, Object> attributes) {
-                this(attributes.get("id").toString(), attributes.get("login").toString(), new ArrayList<>());
-        }
+    public User(Map<String, Object> attributes) {
+        this(attributes.get("id").toString(), attributes.get("login").toString(), new ArrayList<>());
+    }
 }
