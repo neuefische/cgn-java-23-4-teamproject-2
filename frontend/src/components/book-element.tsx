@@ -70,9 +70,6 @@ const StyledDiv = styled.div`
     padding: 1.25rem;
 `;
 
-/*const StyledLink = styled(Link)`
-    text-decoration: none;
-`;*/
 const StyledImg = styled.img`
     margin: 1vw 0 1vw 0;
     height: auto;
