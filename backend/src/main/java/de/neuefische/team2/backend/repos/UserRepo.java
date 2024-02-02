@@ -1,9 +1,10 @@
 package de.neuefische.team2.backend.repos;
 
-import de.neuefische.team2.backend.models.Message;
+
+import de.neuefische.team2.backend.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MessageRepo extends MongoRepository<Message, String> {
+public interface UserRepo extends MongoRepository<User, String> {
 }
