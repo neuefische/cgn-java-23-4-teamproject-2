@@ -14,6 +14,7 @@ export const ViewFavoriteBooks: React.FC<ViewFavoriteBooksProps> = ({books, oncl
 
     return (
         <div className="books">
+
             {favorites.map(favBook => (<FavoriteBookElement key={favBook.id} favoriteBook={favBook}
              onclickHeart={onclickHeart} isFavorite={books.find((book)=> book.id===favBook.book.id) !== undefined} />))}
         </div>
