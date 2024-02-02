@@ -5,7 +5,6 @@ import { CiHeart } from "react-icons/ci";
 import styled from "styled-components";
 import {FavoriteBook} from "../types/FavoriteBook.ts";
 
-
 type BookElementProps = {
     favoriteBook: FavoriteBook
     onclickHeart: (book:Book)=>void

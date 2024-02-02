@@ -1,7 +1,8 @@
 import {Book} from "../types/Book.ts";
 import React from "react";
-import {FavoriteBookElement} from "./favoriteBook-element.tsx";
+
 import {FavoriteBook} from "../types/FavoriteBook.ts";
+import {BookElement} from "./book-element.tsx";
 
 
 type ViewFavoriteBooksProps = {
@@ -15,7 +16,7 @@ export const ViewFavoriteBooks: React.FC<ViewFavoriteBooksProps> = ({books, oncl
     return (
         <div className="books">
 
-            {favorites.map(favBook => (<FavoriteBookElement key={favBook.id} favoriteBook={favBook}
+            {favorites.map(favBook => (<BookElement key={favBook.id} book={favBook.book}
              onclickHeart={onclickHeart} isFavorite={books.find((book)=> book.id===favBook.book.id) !== undefined} />))}
         </div>
     );

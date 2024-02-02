@@ -1,14 +1,9 @@
 package de.neuefische.team2.backend.service;
 
 import de.neuefische.team2.backend.models.Book;
-import de.neuefische.team2.backend.models.BookDto;
 import de.neuefische.team2.backend.models.FavoriteBook;
-import de.neuefische.team2.backend.models.FavoriteBookDto;
-import de.neuefische.team2.backend.repos.BooksRepo;
 import de.neuefische.team2.backend.repos.FavoriteBooksRepo;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -48,7 +43,7 @@ public class FavoriteBookService {
         if (byBookId.isEmpty()){
             return booksRepo.save(book);
         }
-        return null;
+        throw new IllegalArgumentException();
 
     }
 }

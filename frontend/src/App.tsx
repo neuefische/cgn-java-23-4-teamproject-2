@@ -111,9 +111,8 @@ function App() {
 
     const deleteFavoriteBook = (id: string) => {
         axios.delete(`/api/favoriteBooks/${id}`)
-            .then(response => {
+            .then(() => {
                 setFavorites([...favorites.filter(favBook => id !== favBook.book.id)]);
-                return console.log(response.data)
             })
     }
 
@@ -121,7 +120,7 @@ function App() {
     const onclickHeart=(book : Book)=>{
 
         if (favorites.find(favBook => book.id===favBook.book.id) !== undefined){
-           setFavorites(favorites.filter(favBook => book.id !== favBook.book.id))
+          /* setFavorites(favorites.filter(favBook => book.id !== favBook.book.id))*/
            deleteFavoriteBook(book.id);
 
         }else {

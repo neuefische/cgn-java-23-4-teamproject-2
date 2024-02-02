@@ -13,8 +13,6 @@ type BookElementProps = {
 
 export const BookElement: React.FC<BookElementProps> = ({book, onclickHeart, isFavorite}) => {
 
-
-
      const navitage= useNavigate();
 
      const onboxclick=()=>{
