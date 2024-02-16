@@ -10,7 +10,7 @@ import AddNewBook from "./AddNewBook.tsx";
 import NavBar from "./components/Navbar.tsx";
 import NoPage from "./components/NoPage.tsx";
 import Home from "./components/home.tsx";
-import KontaktPage from "./components/kontakt-page.tsx";
+import ContactPage from "./components/kontakt-page.tsx";
 import {Message} from './types/Message.tsx';
 import Thanks from './components/thanks.tsx';
 import {MessageDto} from "./types/MessageDto.tsx";
@@ -37,7 +37,6 @@ function App() {
     useEffect(() => {
         axios.get("/api/messages").then(response => setMessages(response.data))
     }, [])
-
 
 
     const navigate = useNavigate()
@@ -137,7 +136,7 @@ function App() {
                 <Route path={"/favorites"} element={<ViewFavoriteBooks books={books} favorites={favorites}  onclickHeart = {onclickHeart} />}/>
 
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
-                <Route path="/kontakt" element={<KontaktPage messages={messages}
+                <Route path="/kontakt" element={<ContactPage messages={messages}
                                                              saveMessage={addMessage}
                                                              handleMessageDelete={deleteMessage}
                                                              handleEdit={editMessage}/>}/>
