@@ -35,8 +35,7 @@ export default function ViewBook(props : ViewBookProps) {
                             <StyledH>
                                 <StyledPubl><i> {book?.publisher}</i>,</StyledPubl>
                                 <StyledYCP><i> {book?.year}.</i></StyledYCP>
-                                {book?.city ?
-                                    <StyledYCP>,<i> {book?.city}</i></StyledYCP> : null}
+                                {book?.city?<StyledYCP>, <i>{book?.city}</i> </StyledYCP> : null}
                                 <StyledYCP><i>P. {book?.page}</i></StyledYCP>
                             </StyledH>
                         </StyledInfo>

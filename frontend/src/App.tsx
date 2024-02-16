@@ -137,11 +137,12 @@ function App() {
                 <Route path={"/favorites"} element={<ViewFavoriteBooks books={books} favorites={favorites}  onclickHeart = {onclickHeart} />}/>
 
                 <Route path="/books/:id" element={<ViewBook handleBookDelete={deleteBook}/>}/>
-                <Route path="/kontakt" element={<KontaktPage messages={messages} saveMessage={addMessage}
+                <Route path="/kontakt" element={<KontaktPage messages={messages}
+                                                             saveMessage={addMessage}
                                                              handleMessageDelete={deleteMessage}
                                                              handleEdit={editMessage}/>}/>
-                <Route path="/books/:id/edit"
-                       element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
+
+                <Route path="/books/:id/edit" element={<EditBook books={books} editBook={editBook} onUpload={uploadFile}/>}/>
                 <Route path={"/books/add"} element={<AddNewBook saveBook={addBook} onUpload={uploadFile}/>}/>
                 <Route path={"/*"} element={<NoPage/>}/>
                 <Route path={"/thanks"} element={<Thanks/>}/>

@@ -1,3 +1,4 @@
+/*
 import {Book} from "../types/Book.ts";
 import React from "react";
 import {useNavigate} from "react-router-dom";
@@ -73,4 +74,4 @@ const StyledImg = styled.img`
     width: auto;
     max-width: 90%;
     max-height: 90%;
-    object-fit: contain`;
+    object-fit: contain`;*/
