@@ -65,7 +65,7 @@ const NavLinks = styled(NavLink)`
 const Heading = styled.h1`
     font-size: 5vw;
     color: #FFF;
-    font-family: "Party LET";
+    font-family: "Party LET", serif;
     font-style: normal;
     font-weight: 200;
     line-height: normal;
